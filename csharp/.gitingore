@@ -263,3 +263,7 @@ __pycache__/
 
 #sonarqube
 .sonarqube/
+
+#vscode 
+.bin/
+.obj/
