@@ -2,12 +2,12 @@ using System;
 
 namespace money
 {
-    public class Franc
+    public class Franc:Money
     {
-         public int amount{ get; private set; }
-        public Franc(int _amount)
+        //  public int amount{ get; private set; }
+        public Franc(int amount)
         {
-            amount = _amount;
+            _amount = amount;
         }
 
         public Franc times(int multiplier)
@@ -15,21 +15,15 @@ namespace money
             return new Franc(amount * multiplier);
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj == null || GetType() != obj.GetType())
-            {
-                return false;
-            }
-            if(this.amount==((Franc)obj).amount)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        // public override bool Equals(object obj)
+        // {
+        //     if (obj == null || GetType() != obj.GetType())
+        //     {
+        //         return false;
+        //     }
+        //     Money money = (Franc)obj;
+        //     return this.amount == money.amount;
+        // }
         
         // public override int GetHashCode()
         // {

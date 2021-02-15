@@ -13,10 +13,10 @@ namespace moneytest
             int fakeAmount = 5;
             var five = new Dollar(fakeAmount);
             var fiveFranc = new Franc(fakeAmount);
-            Assert.Equal(new Dollar(10), five.times(2));
-            Assert.Equal(new Dollar(15), five.times(3));
-            Assert.Equal(new Franc(10),fiveFranc.times(2));
-            Assert.Equal(new Franc(15), fiveFranc.times(3));
+            Assert.True(new Dollar(10).Equals(five.times(2)));
+            Assert.True(new Dollar(15).Equals(five.times(3)));
+            Assert.True(new Franc(10).Equals(fiveFranc.times(2)));
+            Assert.True(new Franc(15).Equals(fiveFranc.times(3)));
         }
 
         [Fact]
