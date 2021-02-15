@@ -17,5 +17,16 @@ namespace moneytest
             product=five.times(3);
             Assert.Equal(15, product.amount);
         }
+
+        [Fact]
+        [Trait("money","equality")]
+        public void TestEquality()
+        {
+            //Given
+            Assert.Equal(new Dollar(5), new Dollar(5));
+            //When
+
+            //Then
+        }
     }
 }
