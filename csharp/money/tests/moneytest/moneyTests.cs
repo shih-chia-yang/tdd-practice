@@ -11,11 +11,12 @@ namespace moneytest
         public void TestMultiplication()
         {
             int fakeAmount = 5;
-            Dollar five = new Dollar(fakeAmount);
-            var product=five.times(2);
-            Assert.Equal(10, product.amount);
-            product=five.times(3);
-            Assert.Equal(15, product.amount);
+            var five = new Dollar(fakeAmount);
+            var fiveFranc = new Franc(fakeAmount);
+            Assert.Equal(new Dollar(10), five.times(2));
+            Assert.Equal(new Dollar(15), five.times(3));
+            Assert.Equal(new Franc(10),fiveFranc.times(2));
+            Assert.Equal(new Franc(15), fiveFranc.times(3));
         }
 
         [Fact]
@@ -25,6 +26,8 @@ namespace moneytest
             //Given
             Assert.True(new Dollar(5).Equals(new Dollar(5)));
             Assert.False(new Dollar(5).Equals(new Dollar(6)));
+            Assert.True(new Franc(5).Equals(new Franc(5)));
+            Assert.False(new Franc(5).Equals(new Franc(6)));
             //When
 
             //Then
