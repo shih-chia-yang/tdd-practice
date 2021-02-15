@@ -4,7 +4,7 @@ namespace money
 {
     public class Dollar
     {
-        public int amount{ get; private set; }
+        public int amount{ get; set; }
         public Dollar(int _amount)
         {
             amount = _amount;
@@ -15,7 +15,7 @@ namespace money
             return new Dollar(amount * multiplier);
         }
 
-        public override bool Equals(object obj)
+        public bool Equals(object obj)
         {
             // //
             // // See the full list of guidelines at
@@ -35,11 +35,10 @@ namespace money
             return true;
         }
         
-        // override object.GetHashCode
         // public override int GetHashCode()
         // {
         //     // TODO: write your implementation of GetHashCode() here
-        //     throw new System.NotImplementedException();
+        //     // throw new System.NotImplementedException();
         //     return base.GetHashCode();
         // }
     }

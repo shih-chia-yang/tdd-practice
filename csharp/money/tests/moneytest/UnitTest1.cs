@@ -23,7 +23,8 @@ namespace moneytest
         public void TestEquality()
         {
             //Given
-            Assert.Equal(new Dollar(5), new Dollar(5));
+            Assert.True(new Dollar(5).Equals(new Dollar(5)));
+            Assert.False(new Dollar(5).Equals(new Dollar(6)));
             //When
 
             //Then
