@@ -6,16 +6,16 @@ namespace moneytest
 {
     public class MoneyTest
     {
-        [Theory]
-        [InlineData(2,10)]
-        [InlineData(3,15)]
+        [Fact]
         [Trait("money","amount")]
-        public void TestMultiplication(int times,int expected)
+        public void TestMultiplication()
         {
             int fakeAmount = 5;
-            var dollar = new Dollar(fakeAmount);
-            var actualAmount=dollar.times(times);
-            Assert.Equal(expected, actualAmount);
+            Dollar five = new Dollar(fakeAmount);
+            var product=five.times(2);
+            Assert.Equal(10, product.amount);
+            product=five.times(3);
+            Assert.Equal(15, product.amount);
         }
     }
 }

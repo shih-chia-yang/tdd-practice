@@ -10,9 +10,9 @@ namespace money
             amount = _amount;
         }
 
-        public int times(int number)
+        public Dollar times(int multiplier)
         {
-            return amount *= number;
+            return new Dollar(amount * multiplier);
         }
     }
 }
