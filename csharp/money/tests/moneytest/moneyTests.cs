@@ -11,12 +11,13 @@ namespace moneytest
         public void TestMultiplication()
         {
             int fakeAmount = 5;
-            var five = new Dollar(fakeAmount);
-            var fiveFranc = new Franc(fakeAmount);
-            Assert.True(new Dollar(10).Equals(five.times(2)));
-            Assert.True(new Dollar(15).Equals(five.times(3)));
-            Assert.True(new Franc(10).Equals(fiveFranc.times(2)));
-            Assert.True(new Franc(15).Equals(fiveFranc.times(3)));
+            IExchange exchange = new Exchange();
+            var fiveDollar = exchange.Dollar(fakeAmount);
+            var fiveFranc = exchange.Franc(fakeAmount);
+            Assert.True(exchange.Dollar(10).Equals(fiveDollar.times(2)));
+            Assert.True(exchange.Dollar(15).Equals(fiveDollar.times(3)));
+            Assert.True(exchange.Franc(10).Equals(fiveFranc.times(2)));
+            Assert.True(exchange.Franc(15).Equals(fiveFranc.times(3)));
         }
 
         [Fact]
@@ -24,14 +25,16 @@ namespace moneytest
         public void TestEquality()
         {
             //Given
-            Assert.True(new Dollar(5).Equals(new Dollar(5)));
-            Assert.False(new Dollar(5).Equals(new Dollar(6)));
-            Assert.True(new Franc(5).Equals(new Franc(5)));
-            Assert.False(new Franc(5).Equals(new Franc(6)));
-            Assert.False(new Franc(5).Equals(new Dollar(5)));
+            IExchange exchange = new Exchange();
+            
             //When
 
             //Then
+            Assert.True(exchange.Dollar(5).Equals(exchange.Dollar(5)));
+            Assert.False(exchange.Dollar(5).Equals(exchange.Dollar(6)));
+            Assert.True(exchange.Franc(5).Equals(exchange.Franc(5)));
+            Assert.False(exchange.Franc(5).Equals(exchange.Franc(6)));
+            Assert.False(exchange.Franc(5).Equals(exchange.Dollar(5)));
         }
     }
 }

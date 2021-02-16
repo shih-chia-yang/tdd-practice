@@ -3,6 +3,12 @@ using System;
 
 namespace money
 {
+    public interface IMoney
+    {
+        int amount { get; }
+        Money times(int multiplier);
+
+    }
     public abstract class Money
     {
         public int amount => _amount;
