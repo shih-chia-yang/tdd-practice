@@ -8,6 +8,8 @@ namespace money
         public int amount => _amount;
         protected int _amount{ get; set;}
 
+        public abstract Money times(int multiplier);
+
         public bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())

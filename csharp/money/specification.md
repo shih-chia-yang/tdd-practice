@@ -17,9 +17,11 @@
         - [x] #tags rules 將amount 宣告為private
         - [x] #tags rules Dollar類別有副作用嗎？
         - [ ] #tags rules 金額（amount)是否需要整數？
-        - [ ] #tags Dollar與Franc物件重覆設計
+- [ ] #tags Dollar與Franc物件重覆設計
+        - [x] #tqgs 新增 abstract class Money
         - [x] #tags equals方法重覆
         - [ ] #tags times方法重覆
+        - [x] #tags Money新增times抽象方法，提供子類別實作
         
 - [x] #tags rules equals()
         - [x] #tags 比較Dollar與Franc物件是否相等
