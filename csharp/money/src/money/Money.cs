@@ -11,6 +11,8 @@ namespace money
 
         Money times(int multiplier);
 
+        Money Plus(Money added);
+
     }
     public class Money:IMoney
     {
@@ -34,18 +36,27 @@ namespace money
 
         public string GetCurrency() => Currency;
 
-        public bool Equals(object obj)
+        public override bool Equals(object obj)
+        {
+            return this.Equals(obj as Money);
+        }
+
+        public bool Equals(Money obj)
         {
             if (obj == null)
             {
                 return false;
             }
-            Money money = (Money)obj;
-            if(this.Currency!=money.Currency)
+            if(this.Currency!=obj.Currency)
             {
                 return false;
             }
-            return this._amount == money.amount;
+            return this._amount == obj.amount;
+        }
+
+        public Money Plus(Money added)
+        {
+            return new Money(amount+added.amount, "USD");
         }
     }
 }
