@@ -23,6 +23,8 @@
         - [ ] #tags times方法重覆
         - [x] #tags Money新增times抽象方法，提供子類別實作
         - [x] #tags 新增IExchange介面，Exchange類別繼承實作工廠模式，解除測試程式與Dollar與Franc的相依關係
+        - [X] #tags 新增貨幣概念
+                - [x] 新增Currency欄位
         
 - [x] #tags rules equals()
         - [x] #tags 比較Dollar與Franc物件是否相等

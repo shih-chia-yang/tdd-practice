@@ -4,9 +4,13 @@ namespace money
 {
     public class Dollar:Money
     {
-        public Dollar(int amount)
+        public Dollar(int amount):base(amount,"USD")
         {
-            _amount = amount;
+
+        }
+        public Dollar(int amount,string currency):base(amount,currency)
+        {
+
         }
 
         public override Money times(int multiplier)

@@ -36,5 +36,17 @@ namespace moneytest
             Assert.False(exchange.Franc(5).Equals(exchange.Franc(6)));
             Assert.False(exchange.Franc(5).Equals(exchange.Dollar(5)));
         }
+
+        [Fact]
+        public void TestCurrency()
+        {
+            //Given
+            IExchange exchange = new Exchange();
+            //When
+
+            //Then
+            Assert.Equal("USD", exchange.Dollar(5).GetCurrency());
+            Assert.Equal("CHF", exchange.Franc(5).GetCurrency());
+        }
     }
 }
