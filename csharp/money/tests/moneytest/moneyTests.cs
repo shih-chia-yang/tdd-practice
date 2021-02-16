@@ -48,5 +48,16 @@ namespace moneytest
             Assert.Equal("USD", exchange.Dollar(5).GetCurrency());
             Assert.Equal("CHF", exchange.Franc(5).GetCurrency());
         }
+
+        [Fact]
+        public void TestSimpleAddition()
+        {
+            //Given
+            var exchange = new Exchange();
+            //When
+            Money sum = exchange.Dollar(5).Plus(exchange.Dollar(5));
+            //Then
+            Assert.Equal(exchange.Dollar(10), sum);
+        }
     }
 }
