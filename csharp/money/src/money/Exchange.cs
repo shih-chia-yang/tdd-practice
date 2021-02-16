@@ -14,12 +14,12 @@ namespace money
     {
         public Money Dollar(int amount)
         {
-            return new Dollar(amount);
+            return new Money(amount,"USD");
         }
 
         public Money Franc(int amount)
         {
-            return new Franc(amount);
+            return new Money(amount,"CHF");
         }
     }
 }

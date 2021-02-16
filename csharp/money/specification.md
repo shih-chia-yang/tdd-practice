@@ -17,7 +17,7 @@
         - [x] #tags rules 將amount 宣告為private
         - [x] #tags rules Dollar類別有副作用嗎？
         - [ ] #tags rules 金額（amount)是否需要整數？
-- [ ] #tags Dollar與Franc物件重覆設計
+- [x] #tags Dollar與Franc物件重覆設計
         - [x] #tqgs 新增 abstract class Money
         - [x] #tags equals方法重覆
         - [x] #tags times方法重覆
@@ -27,6 +27,7 @@
         - [x] #tags 新增IExchange介面，Exchange類別繼承實作工廠模式，解除測試程式與Dollar與Franc的相依關係
         - [X] #tags 新增貨幣概念
                 - [x] 新增Currency欄位
+        - [X] #tags 刪除Dollar與Franc物件，因類別僅剩建構子方法，已可被Money物件取代
         
 - [x] #tags rules equals()
         - [x] #tags 比較Dollar與Franc物件是否相等
