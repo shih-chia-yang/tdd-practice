@@ -10,11 +10,21 @@
 |--|--|--|
 |瑞士法郎|美元|1.5|
 
-
 - [ ] #tags rules 當瑞士法郎與美元的匯率為2：1的時候，則5美元+10瑞士法郎=10美元
-- [ ] #tags rules 5美元×2=10美元
-- [ ] #tags rules 將amount 宣告為private
-- [ ] #tags rules Dollar類別有副作用嗎？
-- [ ] #tags rules 金額（amount)是否需要整數？
+- [ ] #tags rules Dollar 物件
+        - [x] #tags rules 5美元×2=10美元
+        - [x] #tags rules 5法郎×2=10法郎
+        - [x] #tags rules 將amount 宣告為private
+        - [x] #tags rules Dollar類別有副作用嗎？
+        - [ ] #tags rules 金額（amount)是否需要整數？
+        - [ ] #tags Dollar與Franc物件重覆設計
+        - [x] #tags equals方法重覆
+        - [ ] #tags times方法重覆
+        
+- [x] #tags rules equals()
+        - [x] #tags 比較Dollar與Franc物件是否相等
+        - [x] #tags rules 判斷是否null
+        - [x] #tags 判斷位何型別物件的相等
+        - [ ] #tags rules hashCode()
 
 ## practice experience
