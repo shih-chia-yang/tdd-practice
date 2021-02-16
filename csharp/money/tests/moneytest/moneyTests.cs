@@ -57,9 +57,8 @@ namespace moneytest
             var exchange = new Exchange();
             Money fiveDollar = exchange.Dollar(5);
             Expression sum = fiveDollar.Plus(fiveDollar);
-            Bank bank = new Bank();
             //When
-            Money reduced = bank.reduce(sum,"USD");
+            Money reduced = exchange.reduce(sum,"USD");
             //Then
             Assert.Equal(exchange.Dollar(10), reduced);
         }

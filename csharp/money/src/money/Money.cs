@@ -1,5 +1,5 @@
+using System.Linq.Expressions;
 using System;
-
 
 namespace money
 {
@@ -11,10 +11,10 @@ namespace money
 
         Money times(int multiplier);
 
-        Money Plus(Money added);
+        Expression Plus(Money added);
 
     }
-    public class Money:IMoney
+    public class Money:Expression,IMoney
     {
         public int amount => _amount;
         protected int _amount{ get; set;}
@@ -54,7 +54,7 @@ namespace money
             return this._amount == obj.amount;
         }
 
-        public Money Plus(Money added)
+        public Expression Plus(Money added)
         {
             return new Money(amount+added.amount, "USD");
         }

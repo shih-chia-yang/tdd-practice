@@ -1,5 +1,6 @@
 using System.Net.NetworkInformation;
 using System;
+using System.Linq.Expressions;
 
 namespace money
 {
@@ -8,6 +9,8 @@ namespace money
         Money Dollar(int amount);
 
         Money Franc(int amount);
+
+        Money reduce(Expression source, string to);
     }
 
     public class Exchange : IExchange
@@ -20,6 +23,11 @@ namespace money
         public Money Franc(int amount)
         {
             return new Money(amount,"CHF");
+        }
+
+        public Money reduce (Expression source,string to)
+        {
+            return Dollar(10);
         }
     }
 }
