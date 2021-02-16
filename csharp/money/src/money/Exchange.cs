@@ -1,3 +1,4 @@
+using System.Collections;
 using System;
 namespace money
 {
@@ -11,6 +12,7 @@ namespace money
 
     public class Exchange : IExchange
     {
+        private Hashtable rates = new Hashtable();
         public Money Dollar(int amount)=> new Money(amount,"USD");
 
         public Money Franc(int amount)=> new Money(amount,"CHF");
@@ -19,11 +21,14 @@ namespace money
 
         public int Rate (string source,string to)
         {
-            return (source=="CHF" && to =="USD")? 2 : 1;
+            if(source.Equals(to))return 1;
+            Pair targetPair =new Pair(source, to);
+            int rate = (int)rates[targetPair];
+            return rate;
         }
         public void AddRate(string source,string to,int rate)
         {
-
+            rates.Add(new Pair(source, to), rate);
         }
     }
 
