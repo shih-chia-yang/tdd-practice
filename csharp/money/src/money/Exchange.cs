@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System;
 using System.Linq.Expressions;
@@ -27,7 +28,8 @@ namespace money
 
         public Money reduce (Expression source,string to)
         {
-            return Dollar(10);
+            Sum sum = (Sum)source;
+            return new Money(sum.Augend.amount + sum.Added.amount, to);
         }
     }
 

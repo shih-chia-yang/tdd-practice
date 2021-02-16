@@ -14,7 +14,7 @@ namespace money
         Expression Plus(Money added);
 
     }
-    public class Money:Expression,IMoney
+    public class Money:IMoney
     {
         public int amount => _amount;
         protected int _amount{ get; set;}
