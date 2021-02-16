@@ -20,7 +20,9 @@
 - [ ] #tags Dollar與Franc物件重覆設計
         - [x] #tqgs 新增 abstract class Money
         - [x] #tags equals方法重覆
-        - [ ] #tags times方法重覆
+        - [x] #tags times方法重覆
+                - [x] times方法移至抽象類別，發生錯誤，無法回傳抽象類別，將Money更改為class
+                - [x] 測試失敗，TestMultiplication發生錯誤，型別不相等，應調整為判斷Currency是否相等
         - [x] #tags Money新增times抽象方法，提供子類別實作
         - [x] #tags 新增IExchange介面，Exchange類別繼承實作工廠模式，解除測試程式與Dollar與Franc的相依關係
         - [X] #tags 新增貨幣概念
