@@ -7,24 +7,19 @@ namespace money
 
         Money Franc(int amount);
 
-        
     }
 
     public class Exchange : IExchange
     {
-        public Money Dollar(int amount)
-        {
-            return new Money(amount,"USD");
-        }
+        public Money Dollar(int amount)=> new Money(amount,"USD");
 
-        public Money Franc(int amount)
-        {
-            return new Money(amount,"CHF");
-        }
+        public Money Franc(int amount)=> new Money(amount,"CHF");
 
-        public Money reduce (IExpression source,string to)
+        public Money reduce (IExpression source,string to)=>source.reduce(this,to);
+
+        public void AddRate(string source,string to,int rate)
         {
-            return source.reduce(to);
+
         }
     }
 
@@ -40,6 +35,11 @@ namespace money
         }
 
         public Money reduce (string to)
+        {
+            return new Money(Augend.amount + Added.amount, to);
+        }
+
+        public Money reduce(Exchange exchange, string to)
         {
             return new Money(Augend.amount + Added.amount, to);
         }

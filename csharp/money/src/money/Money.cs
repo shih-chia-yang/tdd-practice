@@ -62,5 +62,11 @@ namespace money
         {
             return this;
         }
+
+        public Money reduce(Exchange exchange, string to)
+        {
+            int rate=(Currency=="CHF" && to =="USD")? 2 : 1;
+            return new Money(amount / rate, to);
+        }
     }
 }

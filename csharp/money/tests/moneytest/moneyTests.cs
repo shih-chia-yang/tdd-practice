@@ -73,16 +73,16 @@ namespace moneytest
             Assert.Equal(exchange.Dollar(1), result);
         }
 
-        // [Fact]
-        // public void TestReduceMoneyDifferentCurrency()
-        // {
-        //     //Given
-        //     Exchange change = new Exchange()
-        //     //When
-        //     change.AddRate("CHF", "USD", 2);
-        //     Money result = change.reduce(change.Franc(2), "USD");
-        //     //Then
-        //     Assert.Equal(change.Dollar(1), result);
-        // }
+        [Fact]
+        public void TestReduceMoneyDifferentCurrency()
+        {
+            //Given
+            Exchange change = new Exchange();
+            //When
+            change.AddRate("CHF", "USD", 2);
+            Money result = change.reduce(change.Franc(2), "USD");
+            //Then
+            Assert.Equal(change.Dollar(1), result);
+        }
     }
 }
