@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using System;
 using money;
 using Xunit;
@@ -54,10 +55,13 @@ namespace moneytest
         {
             //Given
             var exchange = new Exchange();
+            Money fiveDollar = exchange.Dollar(5);
+            Expression sum = fiveDollar.Plus(fiveDollar);
+            Bank bank = new Bank();
             //When
-            Money sum = exchange.Dollar(5).Plus(exchange.Dollar(5));
+            Money reduced = bank.reduce(sum,"USD");
             //Then
-            Assert.Equal(exchange.Dollar(10), sum);
+            Assert.Equal(exchange.Dollar(10), reduced);
         }
     }
 }
