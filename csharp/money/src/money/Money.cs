@@ -56,7 +56,7 @@ namespace money
 
         public Expression Plus(Money added)
         {
-            return new Money(amount+added.amount, "USD");
+            return new Sum(this,added);
         }
     }
 }

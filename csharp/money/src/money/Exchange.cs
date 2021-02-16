@@ -30,4 +30,16 @@ namespace money
             return Dollar(10);
         }
     }
+
+    public class Sum:Expression
+    {
+        public Money Augend{ get; private set;}
+        public Money Added{ get; private set; }
+
+        public Sum(Money augend,Money added)
+        {
+            Augend = augend;
+            Added = added;
+        }
+    }
 }

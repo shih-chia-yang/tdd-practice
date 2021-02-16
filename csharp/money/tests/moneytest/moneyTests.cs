@@ -55,12 +55,11 @@ namespace moneytest
         {
             //Given
             var exchange = new Exchange();
-            Money fiveDollar = exchange.Dollar(5);
-            Expression sum = fiveDollar.Plus(fiveDollar);
+            Expression sum = new Sum(exchange.Dollar(3), exchange.Dollar(5));
             //When
             Money reduced = exchange.reduce(sum,"USD");
             //Then
-            Assert.Equal(exchange.Dollar(10), reduced);
+            Assert.Equal(exchange.Dollar(8), reduced);
         }
     }
 }
