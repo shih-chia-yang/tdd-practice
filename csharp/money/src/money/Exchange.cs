@@ -29,7 +29,7 @@ namespace money
         public Money reduce (Expression source,string to)
         {
             Sum sum = (Sum)source;
-            return new Money(sum.Augend.amount + sum.Added.amount, to);
+            return sum.reduce(to);
         }
     }
 
@@ -42,6 +42,11 @@ namespace money
         {
             Augend = augend;
             Added = added;
+        }
+
+        public Money reduce (string to)
+        {
+            return new Money(Augend.amount + Added.amount, to);
         }
     }
 }
