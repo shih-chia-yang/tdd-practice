@@ -65,8 +65,7 @@ namespace money
 
         public Money reduce(Exchange exchange, string to)
         {
-            int rate=(Currency=="CHF" && to =="USD")? 2 : 1;
-            return new Money(amount / rate, to);
+            return new Money(amount / exchange.Rate(this.Currency,to), to);
         }
     }
 }

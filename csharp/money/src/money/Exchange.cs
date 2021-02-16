@@ -17,6 +17,10 @@ namespace money
 
         public Money reduce (IExpression source,string to)=>source.reduce(this,to);
 
+        public int Rate (string source,string to)
+        {
+            return (source=="CHF" && to =="USD")? 2 : 1;
+        }
         public void AddRate(string source,string to,int rate)
         {
 
