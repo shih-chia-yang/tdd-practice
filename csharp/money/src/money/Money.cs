@@ -1,6 +1,4 @@
-using System.Linq.Expressions;
 using System;
-
 namespace money
 {
     public interface IMoney
@@ -11,10 +9,11 @@ namespace money
 
         Money times(int multiplier);
 
-        Expression Plus(Money added);
+        IExpression Plus(Money added);
 
     }
-    public class Money:IMoney
+
+    public class Money:IExpression, IMoney
     {
         public int amount => _amount;
         protected int _amount{ get; set;}
@@ -54,9 +53,14 @@ namespace money
             return this._amount == obj.amount;
         }
 
-        public Expression Plus(Money added)
+        public IExpression Plus(Money added)
         {
             return new Sum(this,added);
+        }
+
+        public Money reduce(string to)
+        {
+            return this;
         }
     }
 }

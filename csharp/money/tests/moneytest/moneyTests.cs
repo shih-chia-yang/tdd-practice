@@ -51,15 +51,38 @@ namespace moneytest
         }
 
         [Fact]
-        public void TestSimpleAddition()
+        public void TestReduceSum()
         {
             //Given
             var exchange = new Exchange();
-            Expression sum = new Sum(exchange.Dollar(3), exchange.Dollar(5));
+            IExpression sum = new Sum(exchange.Dollar(3), exchange.Dollar(5));
             //When
             Money reduced = exchange.reduce(sum,"USD");
             //Then
             Assert.Equal(exchange.Dollar(8), reduced);
         }
+
+        [Fact]
+        public void TestReduceMoney()
+        {
+            //Given
+            Exchange exchange = new Exchange();
+            //When
+            Money result = exchange.reduce(exchange.Dollar(1), "USD");
+            //Then
+            Assert.Equal(exchange.Dollar(1), result);
+        }
+
+        // [Fact]
+        // public void TestReduceMoneyDifferentCurrency()
+        // {
+        //     //Given
+        //     Exchange change = new Exchange()
+        //     //When
+        //     change.AddRate("CHF", "USD", 2);
+        //     Money result = change.reduce(change.Franc(2), "USD");
+        //     //Then
+        //     Assert.Equal(change.Dollar(1), result);
+        // }
     }
 }

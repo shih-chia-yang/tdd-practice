@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using System;
-using System.Linq.Expressions;
-
 namespace money
 {
     public interface IExchange
@@ -11,7 +7,7 @@ namespace money
 
         Money Franc(int amount);
 
-        Money reduce(Expression source, string to);
+        
     }
 
     public class Exchange : IExchange
@@ -26,14 +22,13 @@ namespace money
             return new Money(amount,"CHF");
         }
 
-        public Money reduce (Expression source,string to)
+        public Money reduce (IExpression source,string to)
         {
-            Sum sum = (Sum)source;
-            return sum.reduce(to);
+            return source.reduce(to);
         }
     }
 
-    public class Sum:Expression
+    public class Sum:IExpression
     {
         public Money Augend{ get; private set;}
         public Money Added{ get; private set; }
