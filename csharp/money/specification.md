@@ -14,6 +14,9 @@
         - [x] add TestSimpleAddition test method
         - [ ] 5美元+5美元=10美元
         - [ ] 5美元+5美元應回傳一個Money物件
+        - [x] Exchange.reduce(Money);
+        - [ ] 有轉換功能的Reduce Money
+        - [ ] Reduce(Exchange,string)
 - [ ] #tags rules Dollar 物件
         - [x] 5美元×2=10美元
         - [x] 5法郎×2=10法郎
