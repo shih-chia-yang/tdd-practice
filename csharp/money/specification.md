@@ -10,13 +10,15 @@
 |--|--|--|
 |瑞士法郎|美元|1.5|
 
-- [ ] #tags rules 當瑞士法郎與美元的匯率為2：1的時候，則5美元+10瑞士法郎=10美元
+- [x] #tags rules 當瑞士法郎與美元的匯率為2：1的時候，則5美元+10瑞士法郎=10美元
         - [x] add TestSimpleAddition test method
         - [x] 5美元+5美元=10美元
         - [ ] 5美元+5美元應回傳一個Money物件
         - [x] Exchange.reduce(Money);
         - [x] 有轉換功能的Reduce Money
         - [x] Reduce(Exchange,string)
+        - [ ] Sum.Plus
+        - [ ] Expression.times
 - [ ] #tags rules Dollar 物件
         - [x] 5美元×2=10美元
         - [x] 5法郎×2=10法郎

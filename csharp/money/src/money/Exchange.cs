@@ -48,5 +48,10 @@ namespace money
             return new Money(Augend.reduce(exchange, to).amount 
             + Added.reduce(exchange, to).amount,to);
         }
+
+        public IExpression Plus(IExpression added)
+        {
+            return null;
+        }
     }
 }
