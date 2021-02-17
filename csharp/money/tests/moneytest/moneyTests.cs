@@ -113,6 +113,21 @@ namespace moneytest
             IExpression sum = new Sum(fiveBucks, tenFranc).Plus(fiveBucks);
             Money result = exchange.reduce(sum, "USD");
             //Then
+            Assert.Equal(exchange.Dollar(20), result);
+        }
+
+        [Fact]
+        public void TestSumTimesMoney()
+        {
+            //Given
+            Exchange exchange = new Exchange();
+            IExpression fiveBucks = exchange.Dollar(5);
+            IExpression tenFranc = exchange.Franc(10);
+            exchange.AddRate("CHF", "USD", 2);
+            //When
+            IExpression sum = new Sum(fiveBucks, tenFranc).times(2);
+            Money result = exchange.reduce(sum, "USD");
+            //Then
             Assert.Equal(exchange.Dollar(15), result);
         }
     }
