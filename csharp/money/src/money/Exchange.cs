@@ -51,7 +51,7 @@ namespace money
 
         public IExpression Plus(IExpression added)
         {
-            return null;
+            return new Sum(this,added);
         }
     }
 }
