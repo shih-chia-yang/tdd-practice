@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using System.Linq.Expressions;
 using System;
 using money;
@@ -83,6 +84,20 @@ namespace moneytest
             Money result = change.reduce(change.Franc(2), "USD");
             //Then
             Assert.Equal(change.Dollar(1), result);
+        }
+
+        [Fact]
+        public void TestMixedAddition()
+        {
+            //Given
+            Exchange exchange = new Exchange();
+            IExpression fivebucks = exchange.Dollar(5);
+            IExpression tenfranc = exchange.Franc(10);
+            //When
+            exchange.AddRate("CHF", "USD", 2);
+            Money result=exchange.reduce(fivebucks.Plus(tenfranc), "USD");
+            //Then
+            Assert.Equal(exchange.Dollar(10), result);
         }
     }
 }
