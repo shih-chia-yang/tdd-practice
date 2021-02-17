@@ -7,9 +7,9 @@ namespace money
 
         string Currency{ get;}
 
-        Money times(int multiplier);
+        IExpression times(int multiplier);
 
-        IExpression Plus(Money added);
+        IExpression Plus(IExpression added);
 
     }
 
@@ -28,7 +28,7 @@ namespace money
             _currency = currency;
         }
 
-        public Money times(int multiplier)
+        public IExpression times(int multiplier)
         {
             return new Money(amount * multiplier, Currency);
         }
@@ -53,7 +53,7 @@ namespace money
             return this._amount == obj.amount;
         }
 
-        public IExpression Plus(Money added)
+        public IExpression Plus(IExpression added)
         {
             return new Sum(this,added);
         }
