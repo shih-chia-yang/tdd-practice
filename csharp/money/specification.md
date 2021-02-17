@@ -18,7 +18,7 @@
         - [x] 有轉換功能的Reduce Money
         - [x] Reduce(Exchange,string)
         - [x] Sum.Plus
-        - [ ] Expression.times
+        - [x] Expression.times
 - [ ] #tags rules Dollar 物件
         - [x] 5美元×2=10美元
         - [x] 5法郎×2=10法郎

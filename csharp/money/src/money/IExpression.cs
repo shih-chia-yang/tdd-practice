@@ -6,5 +6,7 @@ namespace money
         Money reduce(Exchange exchange, string to);
 
         IExpression Plus(IExpression added);
+
+        IExpression Times(int multiplier);
     }
 }

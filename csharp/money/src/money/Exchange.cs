@@ -53,5 +53,10 @@ namespace money
         {
             return new Sum(this,added);
         }
+
+        public IExpression Times(int multiplier)
+        {
+            return new Sum(Augend.Times(multiplier), Added.Times(multiplier));
+        }
     }
 }

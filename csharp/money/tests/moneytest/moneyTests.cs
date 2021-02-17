@@ -16,10 +16,10 @@ namespace moneytest
             IExchange exchange = new Exchange();
             var fiveDollar = exchange.Dollar(fakeAmount);
             var fiveFranc = exchange.Franc(fakeAmount);
-            Assert.True(exchange.Dollar(10).Equals(fiveDollar.times(2)));
-            Assert.True(exchange.Dollar(15).Equals(fiveDollar.times(3)));
-            Assert.True(exchange.Franc(10).Equals(fiveFranc.times(2)));
-            Assert.True(exchange.Franc(15).Equals(fiveFranc.times(3)));
+            Assert.True(exchange.Dollar(10).Equals(fiveDollar.Times(2)));
+            Assert.True(exchange.Dollar(15).Equals(fiveDollar.Times(3)));
+            Assert.True(exchange.Franc(10).Equals(fiveFranc.Times(2)));
+            Assert.True(exchange.Franc(15).Equals(fiveFranc.Times(3)));
         }
 
         [Fact]
@@ -109,11 +109,10 @@ namespace moneytest
             IExpression tenFranc = exchange.Franc(10);
             exchange.AddRate("CHF", "USD", 2);
             //When
-
             IExpression sum = new Sum(fiveBucks, tenFranc).Plus(fiveBucks);
             Money result = exchange.reduce(sum, "USD");
             //Then
-            Assert.Equal(exchange.Dollar(20), result);
+            Assert.Equal(exchange.Dollar(15), result);
         }
 
         [Fact]
@@ -125,10 +124,10 @@ namespace moneytest
             IExpression tenFranc = exchange.Franc(10);
             exchange.AddRate("CHF", "USD", 2);
             //When
-            IExpression sum = new Sum(fiveBucks, tenFranc).times(2);
+            IExpression sum = new Sum(fiveBucks, tenFranc).Times(2);
             Money result = exchange.reduce(sum, "USD");
             //Then
-            Assert.Equal(exchange.Dollar(15), result);
+            Assert.Equal(exchange.Dollar(20), result);
         }
     }
 }

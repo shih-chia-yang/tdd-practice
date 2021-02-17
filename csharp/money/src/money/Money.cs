@@ -6,11 +6,6 @@ namespace money
         int amount { get; }
 
         string Currency{ get;}
-
-        IExpression times(int multiplier);
-
-        IExpression Plus(IExpression added);
-
     }
 
     public class Money:IExpression, IMoney
@@ -28,7 +23,7 @@ namespace money
             _currency = currency;
         }
 
-        public IExpression times(int multiplier)
+        public IExpression Times(int multiplier)
         {
             return new Money(amount * multiplier, Currency);
         }
