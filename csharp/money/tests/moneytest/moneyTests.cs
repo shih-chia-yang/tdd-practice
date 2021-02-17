@@ -129,5 +129,18 @@ namespace moneytest
             //Then
             Assert.Equal(exchange.Dollar(20), result);
         }
+
+        [Fact]
+        public void TestPlusSameCurrencyReturnMoney()
+        {
+            //Given
+            Exchange exchange = new Exchange();
+            exchange.AddRate("CHF", "USD", 2);
+            //When
+            IExpression sum = exchange.Dollar(1).Plus(exchange.Dollar(1));
+            Money result = exchange.reduce(sum, "USD");
+            //Then
+            Assert.IsType<Money>(result);
+        }
     }
 }
