@@ -91,8 +91,8 @@ namespace moneytest
         {
             //Given
             Exchange exchange = new Exchange();
-            IExpression fivebucks = exchange.Dollar(5);
-            IExpression tenfranc = exchange.Franc(10);
+            Money fivebucks = exchange.Dollar(5);
+            Money tenfranc = exchange.Franc(10);
             //When
             exchange.AddRate("CHF", "USD", 2);
             Money result=exchange.reduce(fivebucks.Plus(tenfranc), "USD");
