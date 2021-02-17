@@ -34,18 +34,13 @@ namespace money
 
     public class Sum:IExpression
     {
-        public Money Augend{ get; private set;}
-        public Money Added{ get; private set; }
+        public IExpression Augend{ get; private set;}
+        public IExpression Added{ get; private set; }
 
-        public Sum(Money augend,Money added)
+        public Sum(IExpression augend,IExpression added)
         {
             Augend = augend;
             Added = added;
-        }
-
-        public Money reduce (string to)
-        {
-            return new Money(Augend.amount + Added.amount, to);
         }
 
         public Money reduce(Exchange exchange, string to)
