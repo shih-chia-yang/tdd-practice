@@ -1,6 +1,10 @@
+using System.Security.Cryptography.X509Certificates;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace money
 {
     public interface IExchangeService
@@ -36,15 +40,11 @@ namespace money
 
         public Money Plus (string to,params Money[] addeds)
         {
-            if(addeds is null || addeds.Length==0)
+            if(addeds is null || addeds.Count()==0)
             {
                 throw new ArgumentNullException("addeds can't be null or empty", nameof(Plus));
             }
-            int amount = 0;
-            foreach(Money money in addeds)
-            {
-                amount += money.Amount;
-            }
+            int amount=addeds.Select(x => x.Amount).Aggregate((x, y)=>x + y);
             return new Money(amount,to);
         }
     }
