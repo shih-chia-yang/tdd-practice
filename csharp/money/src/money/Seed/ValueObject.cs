@@ -8,7 +8,12 @@ namespace src.money.Seed
 
         public override bool Equals(object obj)
         {
-            return GetEquality().Count() > 0;
+            if (obj == null || obj.GetType() != GetType())
+            {
+                return false;
+            }
+            var compare = (ValueObject)obj;
+            return this.GetEquality().SequenceEqual(compare.GetEquality());
         }
 
         public override int GetHashCode()
