@@ -41,5 +41,3 @@
   - [x] 判斷是否null
   - [x] 判斷位何型別物件的相等
   - [ ] hashCode()
-
-## practice experience
