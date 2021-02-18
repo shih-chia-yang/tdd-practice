@@ -36,12 +36,17 @@ namespace money
 
         public Money Plus (params Money[] addeds)
         {
+            if(addeds is null || addeds.Length==0)
+            {
+                throw new ArgumentNullException("addeds can't be null or empty", nameof(Plus));
+            }
             int amount = 0;
+            string currency = addeds[0].Currency;
             foreach(Money money in addeds)
             {
                 amount += money.Amount;
             }
-            return Bank.Dollar(amount);
+            return new Money(amount, currency);
         }
     }
 
