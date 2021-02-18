@@ -8,6 +8,8 @@
     - [x] 匯兌機制，測試方法有大量Money物件比較，表示Money於該情境並不具備唯一值，Money物件為ValueObject
       - [x] 刪除無用IMoney介面
       - [x] 新增CreateMoney取代Exchange.Dollar()
+        - [x] 這此情境概念上錢似乎不能製造錢
+          - [x] 新增bank.cs來負責實例化Money物件
   - [ ] 建立Entity
     - [x] 新增Entity.cs
   - [x] 建立ValueObject
