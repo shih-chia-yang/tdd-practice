@@ -2,15 +2,7 @@ using System.Collections;
 using System;
 namespace money
 {
-    public interface IExchange
-    {
-        Money Dollar(int amount);
-
-        Money Franc(int amount);
-
-    }
-
-    public class Exchange : Entity, IExchange
+    public class Exchange : Entity
     {
         private Hashtable rates = new Hashtable();
         public Money Dollar(int amount)=> new Money(amount,"USD");

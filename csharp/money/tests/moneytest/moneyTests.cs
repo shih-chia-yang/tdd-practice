@@ -13,7 +13,7 @@ namespace moneytest
         public void TestMultiplication()
         {
             int fakeAmount = 5;
-            IExchange exchange = new Exchange();
+            Exchange exchange = new Exchange();
             var fiveDollar = exchange.Dollar(fakeAmount);
             var fiveFranc = exchange.Franc(fakeAmount);
             Assert.True(exchange.Dollar(10).Equals(fiveDollar.Times(2)));
@@ -27,7 +27,7 @@ namespace moneytest
         public void TestEquality()
         {
             //Given
-            IExchange exchange = new Exchange();
+            Exchange exchange = new Exchange();
             
             //When
 
@@ -43,7 +43,7 @@ namespace moneytest
         public void TestCurrency()
         {
             //Given
-            IExchange exchange = new Exchange();
+            Exchange exchange = new Exchange();
             //When
 
             //Then
