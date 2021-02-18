@@ -30,12 +30,7 @@ namespace money
 
         public string GetCurrency() => Currency;
 
-        public override bool Equals(object obj)
-        {
-            return this.Equals(obj as Money);
-        }
-
-        public bool Equals(Money obj)
+        public bool GetEquality(Money obj)
         {
             if (obj == null)
             {
