@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using src.money.Seed;
 
 namespace money
@@ -32,18 +33,10 @@ namespace money
 
         public string GetCurrency() => Currency;
 
-        public override bool GetEquality(object obj)
+        public override IEnumerable<object> GetEquality()
         {
-            if (obj == null)
-            {
-                return false;
-            }
-            Money money = (Money)obj;
-            if(this.Currency!=money.Currency)
-            {
-                return false;
-            }
-            return this._amount == money.amount;
+            yield return Currency;
+            yield return amount;
         }
 
         public IExpression Plus(IExpression added)
