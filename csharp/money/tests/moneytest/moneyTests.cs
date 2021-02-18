@@ -51,7 +51,7 @@ namespace moneytest
         public void TestReduceSum()
         {
             //Given
-            var exchange = new Exchange();
+            var exchange = new ExchangeService();
             IExpression sum = new Sum(Bank.Dollar(3), Bank.Dollar(5));
             //When
             Money reduced = exchange.reduce(sum,"USD");
@@ -63,7 +63,7 @@ namespace moneytest
         public void TestReduceMoney()
         {
             //Given
-            Exchange exchange = new Exchange();
+            ExchangeService exchange = new ExchangeService();
             //When
             Money result = exchange.reduce(Bank.Dollar(1), "USD");
             //Then
@@ -74,7 +74,7 @@ namespace moneytest
         public void TestReduceMoneyDifferentCurrency()
         {
             //Given
-            Exchange change = new Exchange();
+            ExchangeService change = new ExchangeService();
             //When
             change.AddRate("CHF", "USD", 2);
             Money result = change.reduce(Bank.Franc(2), "USD");
@@ -86,7 +86,7 @@ namespace moneytest
         public void TestMixedAddition()
         {
             //Given
-            Exchange exchange = new Exchange();
+            ExchangeService exchange = new ExchangeService();
             IExpression fivebucks = Bank.Dollar(5);
             IExpression tenfranc = Bank.Franc(10);
             //When
@@ -100,7 +100,7 @@ namespace moneytest
         public void TestSumPlusMoney()
         {
             //Given
-            Exchange exchange = new Exchange();
+            ExchangeService exchange = new ExchangeService();
             IExpression fiveBucks = Bank.Dollar(5);
             IExpression tenFranc = Bank.Franc(10);
             exchange.AddRate("CHF", "USD", 2);
@@ -115,7 +115,7 @@ namespace moneytest
         public void TestSumTimesMoney()
         {
             //Given
-            Exchange exchange = new Exchange();
+            ExchangeService exchange = new ExchangeService();
             IExpression fiveBucks = Bank.Dollar(5);
             IExpression tenFranc = Bank.Franc(10);
             exchange.AddRate("CHF", "USD", 2);
@@ -130,7 +130,7 @@ namespace moneytest
         public void TestPlusSameCurrencyReturnMoney()
         {
             //Given
-            Exchange exchange = new Exchange();
+            ExchangeService exchange = new ExchangeService();
             exchange.AddRate("CHF", "USD", 2);
             //When
             IExpression sum = Bank.Dollar(1).Plus(Bank.Dollar(1));

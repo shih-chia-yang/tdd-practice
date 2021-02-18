@@ -2,13 +2,19 @@ using System.Collections;
 using System;
 namespace money
 {
-    public class Exchange : Entity
+    public interface IExchangeService
+    {
+        int Rate(string source, string to);
+        void AddRate(string source, string to, int rate);
+        Money reduce(IExpression source, string to);
+    }
+    public class ExchangeService : IExchangeService
     {
         private Hashtable rates = new Hashtable();
 
         public Money reduce (IExpression source,string to)=>source.reduce(this,to);
 
-        public Exchange()
+        public ExchangeService()
         {
             
         }
@@ -37,7 +43,7 @@ namespace money
             Added = added;
         }
 
-        public Money reduce(Exchange exchange, string to)
+        public Money reduce(IExchangeService exchange, string to)
         {
             return new Money(Augend.reduce(exchange, to).Amount 
             + Added.reduce(exchange, to).Amount,to);

@@ -18,8 +18,7 @@ namespace money
             _amount = amount;
             _currency = currency;
         }
-
-        public static Money CreateMoney(int amount, string currency) => new Money(amount, currency);
+        
         public IExpression Times(int multiplier)
         {
             return new Money(Amount * multiplier, Currency);
@@ -38,12 +37,7 @@ namespace money
             return new Sum(this,added);
         }
 
-        public Money reduce(string to)
-        {
-            return this;
-        }
-
-        public Money reduce(Exchange exchange, string to)
+        public Money reduce(IExchangeService exchange, string to)
         {
             return new Money(Amount / exchange.Rate(this.Currency,to), to);
         }

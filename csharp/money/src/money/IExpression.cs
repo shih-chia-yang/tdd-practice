@@ -3,7 +3,7 @@ namespace money
 {
     public interface IExpression
     {
-        Money reduce(Exchange exchange, string to);
+        Money reduce(IExchangeService exchange, string to);
 
         IExpression Plus(IExpression added);
 
