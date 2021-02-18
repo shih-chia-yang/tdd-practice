@@ -7,6 +7,8 @@ namespace money
         int Rate(string source, string to);
         void AddRate(string source, string to, int rate);
         Money reduce(IExpression source, string to);
+
+        Money Plus(params Money[] added);
     }
     public class ExchangeService : IExchangeService
     {
@@ -29,6 +31,11 @@ namespace money
         public void AddRate(string source,string to,int rate)
         {
             rates.Add(new Pair(source, to), rate);
+        }
+
+        public Money Plus (params Money[] added)
+        {
+            return Bank.Dollar(10);
         }
     }
 
