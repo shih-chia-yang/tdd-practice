@@ -3,8 +3,8 @@
 - [ ] 導入DDD
   - [ ] 識別Entity與ValueObject
   - [ ] 建立Entity
-  - [ ] 建立ValueObject
-    - [ ] 以使用物件內所有值計算hash
+  - [x] 建立ValueObject
+    - [x] 以使用物件內所有值計算hash
     - [x] 新增ValueObject.cs
       - [x] 將equals方法移出至ValueObject抽象類別
       - [x] 物件值判斷使用抽象方法，應該子類別實作

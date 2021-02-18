@@ -6,14 +6,14 @@ namespace money
 {
     public interface IMoney
     {
-        int amount { get; }
+        int Amount { get; }
 
         string Currency{ get;}
     }
 
     public class Money:ValueObject,IExpression, IMoney
     {
-        public int amount => _amount;
+        public int Amount => _amount;
         protected int _amount{ get; set;}
 
         public string Currency => _currency;
@@ -28,7 +28,7 @@ namespace money
 
         public IExpression Times(int multiplier)
         {
-            return new Money(amount * multiplier, Currency);
+            return new Money(Amount * multiplier, Currency);
         }
 
         public string GetCurrency() => Currency;
@@ -36,7 +36,7 @@ namespace money
         public override IEnumerable<object> GetEquality()
         {
             yield return Currency;
-            yield return amount;
+            yield return Amount;
         }
 
         public IExpression Plus(IExpression added)
@@ -51,7 +51,7 @@ namespace money
 
         public Money reduce(Exchange exchange, string to)
         {
-            return new Money(amount / exchange.Rate(this.Currency,to), to);
+            return new Money(Amount / exchange.Rate(this.Currency,to), to);
         }
     }
 }

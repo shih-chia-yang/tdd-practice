@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Linq;
 using System.Collections.Generic;
 namespace src.money.Seed
@@ -18,7 +20,7 @@ namespace src.money.Seed
 
         public override int GetHashCode()
         {
-            return 0;
+            return GetEquality().Select(x=>x!=null?x.GetHashCode():0).Aggregate((x,y)=>x^y);
         }
     }
 }

@@ -45,8 +45,8 @@ namespace money
 
         public Money reduce(Exchange exchange, string to)
         {
-            return new Money(Augend.reduce(exchange, to).amount 
-            + Added.reduce(exchange, to).amount,to);
+            return new Money(Augend.reduce(exchange, to).Amount 
+            + Added.reduce(exchange, to).Amount,to);
         }
 
         public IExpression Plus(IExpression added)
