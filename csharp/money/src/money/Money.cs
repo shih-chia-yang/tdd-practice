@@ -4,14 +4,7 @@ using src.money.Seed;
 
 namespace money
 {
-    public interface IMoney
-    {
-        int Amount { get; }
-
-        string Currency{ get;}
-    }
-
-    public class Money:ValueObject,IExpression, IMoney
+    public class Money:ValueObject,IExpression
     {
         public int Amount => _amount;
         protected int _amount{ get; set;}
