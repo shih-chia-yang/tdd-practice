@@ -1,4 +1,6 @@
 using System;
+using src.money.Seed;
+
 namespace money
 {
     public interface IMoney
@@ -8,7 +10,7 @@ namespace money
         string Currency{ get;}
     }
 
-    public class Money:IExpression, IMoney
+    public class Money:ValueObject,IExpression, IMoney
     {
         public int amount => _amount;
         protected int _amount{ get; set;}
@@ -30,17 +32,18 @@ namespace money
 
         public string GetCurrency() => Currency;
 
-        public bool GetEquality(Money obj)
+        public override bool GetEquality(object obj)
         {
             if (obj == null)
             {
                 return false;
             }
-            if(this.Currency!=obj.Currency)
+            Money money = (Money)obj;
+            if(this.Currency!=money.Currency)
             {
                 return false;
             }
-            return this._amount == obj.amount;
+            return this._amount == money.amount;
         }
 
         public IExpression Plus(IExpression added)
