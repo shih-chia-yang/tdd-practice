@@ -10,6 +10,7 @@
       - [x] 新增CreateMoney取代Exchange.Dollar()
         - [x] 這此情境概念上錢似乎不能製造錢
           - [x] 新增bank.cs來負責實例化Money物件
+          - [x] 刪除Exchange中的實例化Money
   - [ ] 建立Entity
     - [x] 新增Entity.cs
   - [x] 建立ValueObject

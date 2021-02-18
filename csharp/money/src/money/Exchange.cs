@@ -5,9 +5,6 @@ namespace money
     public class Exchange : Entity
     {
         private Hashtable rates = new Hashtable();
-        public Money Dollar(int amount)=> new Money(amount,"USD");
-
-        public Money Franc(int amount)=> new Money(amount,"CHF");
 
         public Money reduce (IExpression source,string to)=>source.reduce(this,to);
 
