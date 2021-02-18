@@ -11,4 +11,6 @@
     - [x] 是否有比foreach更快捷的方式
       - [x]使用linq aggregate進行加總 
     - [x] 加入匯率轉換
-      - [ ] 法郎與美元互相轉換 
+      - [ ] 法郎與美元互相轉換
+      - [ ] Money.Plus與Exchange.Plus Rate方法重覆
+    - [ ] ExchangeServiceTests與MoneyTests測試方法重覆

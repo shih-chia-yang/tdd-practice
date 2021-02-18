@@ -71,42 +71,54 @@ namespace moneytest
         }
 
         [Fact]
+        /// <summary>
+        /// 與ExchangeServiceTests重覆測試，待移除
+        /// </summary>
         public void TestReduceMoneyDifferentCurrency()
         {
             //Given
-            ExchangeService change = new ExchangeService();
+            ExchangeService exchange = new ExchangeService();
             //When
-            change.AddRate("CHF", "USD", 2);
-            Money result = change.reduce(Bank.Franc(2), "USD");
+            exchange.AddRate("CHF", "USD", 2);
+            // Money result = change.reduce(Bank.Franc(2), "USD");
+            Money result=exchange.Plus("USD",Bank.Franc(2));
             //Then
             Assert.Equal(Bank.Dollar(1), result);
         }
 
         [Fact]
+        /// <summary>
+        /// 與ExchangeServiceTests重覆測試，待移除
+        /// </summary>
         public void TestMixedAddition()
         {
             //Given
             ExchangeService exchange = new ExchangeService();
-            IExpression fivebucks = Bank.Dollar(5);
-            IExpression tenfranc = Bank.Franc(10);
+            Money fivebucks = Bank.Dollar(5);
+            Money tenfranc = Bank.Franc(10);
             //When
             exchange.AddRate("CHF", "USD", 2);
-            Money result=exchange.reduce(fivebucks.Plus(tenfranc), "USD");
+            Money result=exchange.Plus("USD",new Money[]{fivebucks, tenfranc});
+            // exchange.reduce(fivebucks.Plus(tenfranc), "USD");
             //Then
             Assert.Equal(Bank.Dollar(10), result);
         }
 
         [Fact]
+        /// <summary>
+        /// 與ExchangeServiceTests重覆測試，待移除
+        /// </summary>
         public void TestSumPlusMoney()
         {
             //Given
             ExchangeService exchange = new ExchangeService();
-            IExpression fiveBucks = Bank.Dollar(5);
-            IExpression tenFranc = Bank.Franc(10);
+            Money fiveBucks = Bank.Dollar(5);
+            Money tenFranc = Bank.Franc(10);
             exchange.AddRate("CHF", "USD", 2);
             //When
-            IExpression sum = new Sum(fiveBucks, tenFranc).Plus(fiveBucks);
-            Money result = exchange.reduce(sum, "USD");
+            // IExpression sum = new Sum(fiveBucks, tenFranc).Plus(fiveBucks);
+            // Money result = exchange.reduce(sum, "USD");
+            Money result=exchange.Plus("USD",new Money[]{fiveBucks, tenFranc,fiveBucks});
             //Then
             Assert.Equal(Bank.Dollar(15), result);
         }
