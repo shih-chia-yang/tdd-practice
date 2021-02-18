@@ -27,11 +27,24 @@ namespace moneytest
             var fiveBucks = Bank.Dollar(5);
             var fiveFranc = Bank.Franc(5);
             //When
-            Money dollarResult=exchange.Plus(new Money[]{fiveBucks, fiveBucks});
-            Money francResult=exchange.Plus(new Money[]{fiveFranc, fiveFranc});
+            Money dollarResult=exchange.Plus("USD",new Money[]{fiveBucks, fiveBucks});
+            Money francResult=exchange.Plus("CHF",new Money[]{fiveFranc, fiveFranc});
             //Then
             Assert.Equal(Bank.Dollar(10), dollarResult);
             Assert.Equal(Bank.Franc(10), francResult);
+        }
+
+        [Fact]
+        public void if_Assigned_Currency_It_Should_Be_Return_Correct_Assigned_Currency()
+        {
+            //Given
+            IExchangeService exchange = new ExchangeService();
+            var fiveBucks = Bank.Dollar(5);
+            var fiveFranc = Bank.Franc(5);
+            //When
+            Money result=exchange.Plus("CHF",new Money[]{fiveBucks, fiveFranc});
+            //Then
+            Assert.Equal(Bank.Franc(10), result);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace money
         void AddRate(string source, string to, int rate);
         Money reduce(IExpression source, string to);
 
-        Money Plus(params Money[] addeds);
+        Money Plus(string to,params Money[] addeds);
     }
     public class ExchangeService : IExchangeService
     {
@@ -34,19 +34,18 @@ namespace money
             rates.Add(new Pair(source, to), rate);
         }
 
-        public Money Plus (params Money[] addeds)
+        public Money Plus (string to,params Money[] addeds)
         {
             if(addeds is null || addeds.Length==0)
             {
                 throw new ArgumentNullException("addeds can't be null or empty", nameof(Plus));
             }
             int amount = 0;
-            string currency = addeds[0].Currency;
             foreach(Money money in addeds)
             {
                 amount += money.Amount;
             }
-            return new Money(amount, currency);
+            return new Money(amount,to);
         }
     }
 
