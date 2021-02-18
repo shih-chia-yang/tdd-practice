@@ -3,9 +3,11 @@
 - [ ] 導入DDD
   - [ ] 識別Entity與ValueObject
     - [ ] Exchange與Money的情境
+    - [ ] Exchange在匯兌中為Entity，每次處理匯兌流程均為唯一，視為不同交易程序
     - [x] 匯兌機制，測試方法有大量Money物件比較，表示Money於該情境並不具備唯一值，Money物件為ValueObject
       - [x] 刪除無用IMoney介面
   - [ ] 建立Entity
+    - [x] 新增Entity.cs
   - [x] 建立ValueObject
     - [x] 以使用物件內所有值計算hash
     - [x] 新增ValueObject.cs

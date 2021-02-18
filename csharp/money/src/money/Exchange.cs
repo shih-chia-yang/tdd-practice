@@ -10,7 +10,7 @@ namespace money
 
     }
 
-    public class Exchange : IExchange
+    public class Exchange : Entity, IExchange
     {
         private Hashtable rates = new Hashtable();
         public Money Dollar(int amount)=> new Money(amount,"USD");
@@ -18,6 +18,11 @@ namespace money
         public Money Franc(int amount)=> new Money(amount,"CHF");
 
         public Money reduce (IExpression source,string to)=>source.reduce(this,to);
+
+        public Exchange()
+        {
+            
+        }
 
         public int Rate (string source,string to)
         {
