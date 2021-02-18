@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections;
 using System;
 namespace money
@@ -8,7 +9,7 @@ namespace money
         void AddRate(string source, string to, int rate);
         Money reduce(IExpression source, string to);
 
-        Money Plus(params Money[] added);
+        Money Plus(params Money[] addeds);
     }
     public class ExchangeService : IExchangeService
     {
@@ -33,9 +34,14 @@ namespace money
             rates.Add(new Pair(source, to), rate);
         }
 
-        public Money Plus (params Money[] added)
+        public Money Plus (params Money[] addeds)
         {
-            return Bank.Dollar(10);
+            int amount = 0;
+            foreach(Money money in addeds)
+            {
+                amount += money.Amount;
+            }
+            return Bank.Dollar(amount);
         }
     }
 
