@@ -13,13 +13,12 @@ namespace moneytest
         public void TestMultiplication()
         {
             int fakeAmount = 5;
-            Exchange exchange = new Exchange();
-            var fiveDollar = exchange.Dollar(fakeAmount);
-            var fiveFranc = exchange.Franc(fakeAmount);
-            Assert.True(exchange.Dollar(10).Equals(fiveDollar.Times(2)));
-            Assert.True(exchange.Dollar(15).Equals(fiveDollar.Times(3)));
-            Assert.True(exchange.Franc(10).Equals(fiveFranc.Times(2)));
-            Assert.True(exchange.Franc(15).Equals(fiveFranc.Times(3)));
+            var fiveDollar = Money.CreateMoney(fakeAmount,"USD");
+            var fiveFranc = Money.CreateMoney(fakeAmount,"CHF");
+            Assert.True(Money.CreateMoney(10,"USD").Equals(fiveDollar.Times(2)));
+            Assert.True(Money.CreateMoney(15,"USD").Equals(fiveDollar.Times(3)));
+            Assert.True(Money.CreateMoney(10,"CHF").Equals(fiveFranc.Times(2)));
+            Assert.True(Money.CreateMoney(15,"CHF").Equals(fiveFranc.Times(3)));
         }
 
         [Fact]

@@ -19,6 +19,7 @@ namespace money
             _currency = currency;
         }
 
+        public static Money CreateMoney(int amount, string currency) => new Money(amount, currency);
         public IExpression Times(int multiplier)
         {
             return new Money(Amount * multiplier, Currency);
