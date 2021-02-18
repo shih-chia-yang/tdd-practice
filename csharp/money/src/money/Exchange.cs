@@ -44,7 +44,7 @@ namespace money
             {
                 throw new ArgumentNullException("addeds can't be null or empty", nameof(Plus));
             }
-            int amount=addeds.Select(x => x.Amount).Aggregate((x, y)=>x + y);
+            int amount=addeds.Select(x =>x.reduce(this,to).Amount).Aggregate((x, y)=>x + y);
             return new Money(amount,to);
         }
     }

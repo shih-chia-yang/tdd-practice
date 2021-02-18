@@ -20,12 +20,13 @@ namespace moneytest
         }
         
         [Fact]
-        public void TestPlusMoney()
+        public void If_Sum_MutiMoney_It_Should_Be_Return_Correct_Total_Money()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
             var fiveBucks = Bank.Dollar(5);
             var fiveFranc = Bank.Franc(5);
+            exchange.AddRate("CHF", "USD", 2);
             //When
             Money dollarResult=exchange.Plus("USD",new Money[]{fiveBucks, fiveBucks});
             Money francResult=exchange.Plus("CHF",new Money[]{fiveFranc, fiveFranc});
@@ -39,12 +40,12 @@ namespace moneytest
         {
             //Given
             IExchangeService exchange = new ExchangeService();
-            var fiveBucks = Bank.Dollar(5);
-            var fiveFranc = Bank.Franc(5);
+            var fiveFranc= Bank.Franc(10);
+            exchange.AddRate("CHF", "USD", 2);
             //When
-            Money result=exchange.Plus("CHF",new Money[]{fiveBucks, fiveFranc});
+            Money result=exchange.Plus("USD",fiveFranc);
             //Then
-            Assert.Equal(Bank.Franc(10), result);
+            Assert.Equal(Bank.Dollar(5), result);
         }
     }
 }
