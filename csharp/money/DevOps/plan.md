@@ -7,5 +7,8 @@
 - [ ] #tags work-item
   - [x] #tags refact/refactor-exchange-entity  add new git branch [[refactor-exchange-entity.md]]
   - [x] #tags refact/refactor-Money-valueobject add new git branch [[refactor-Money-valueobject.md]]
-  - [ ] #tags refact/refactor-ExchangeService [[refactor-exchange-service.md]]
-    - [ ] add new git branch 
+  - [x] #tags refact/refactor-ExchangeService [[refactor-exchange-service.md]]
+    - [x] add new git branch 
+  - [ ] #tags refact/refactor-pair-valueobject [[refactor-pair-vauleobject.md]]
+    - [ ] add new git branch
+    - [ ] add md file
