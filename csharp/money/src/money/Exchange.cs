@@ -56,11 +56,23 @@ namespace money
 
         public Money Exchange(ICurrencyExpression source, string to)
         {
+            if(source is null)
+            {
+                throw new ArgumentNullException("Exchange must be have Money", nameof(Exchange));
+            }
+            if(string.IsNullOrEmpty(to))
+            {
+                throw new ArgumentNullException("Exchange must assign Currency", nameof(Exchange));
+            }
             return new Money(source.Amount / Rate(source.Currency, to), to);
         }
 
         public Money Times(Money source, int multiplier)
         {
+            if(source is null)
+            {
+                throw new ArgumentNullException("Multiplicand can not be null", nameof(Times));
+            }
             return new Money(source.Amount * multiplier, source.Currency);
         }
     }

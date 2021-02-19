@@ -9,14 +9,31 @@ namespace moneytest
     public class ExchangeServiceTests
     {
         [Fact]
-        public void if_ParamArray_is_null_or_Empty_It_Should_Be_Return_Exception()
+        public void if_ParamArray_is_null_or_Empty_It_Should_Be_Throw_Exception()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
             //When
-            ArgumentNullException exception=Assert.Throws<ArgumentNullException>(()=>exchange.Sum(null));
+            ArgumentNullException exception=
+                Assert.Throws<ArgumentNullException>(()=>exchange.Sum(null));
             //Then
             Assert.Contains("addeds can't be null or empty", exception.Message);
+        }
+
+        [Fact]
+        public void If_Array_Contains_Diff_Money_And_Param_to_Is_Null_It_Should_Be_Throw_Exception()
+        {
+            //Given
+            IExchangeService exchange = new ExchangeService();
+            //When
+            ArgumentNullException exception=
+                Assert.Throws<ArgumentNullException>(()=>
+                    exchange.Sum(
+                        null,
+                        new ICurrencyExpression[]{Bank.Dollar(1),Bank.Franc(10)}
+                        ));
+            //Then
+            Assert.Contains("addeds contains diff currency,mush be assign currency", exception.Message);
         }
         
         [Fact]
@@ -37,6 +54,22 @@ namespace moneytest
         }
 
         [Fact]
+        public void if_Exchange_Params_Is_Null_It_Should_Be_Throw_Exception()
+        {
+            //Given
+            IExchangeService exchange = new ExchangeService();
+            //When
+            ArgumentNullException exception=
+                Assert.Throws<ArgumentNullException>(()=>
+                    exchange.Exchange(Bank.Dollar(1),null));
+            //Then
+            Assert.Contains("Exchange must assign Currency", exception.Message);
+            ArgumentNullException sourceException=Assert
+            .Throws<ArgumentNullException>(()=>exchange.Exchange(null,"USD"));
+            Assert.Contains("Exchange must be have Money", sourceException.Message);
+        }
+
+        [Fact]
         public void if_Currency_Exchange_It_Should_Be_Return_Assign_Currency_And_Correct_Amount()
         {
             //Given
@@ -50,7 +83,19 @@ namespace moneytest
         }
 
         [Fact]
-        public void if_Multiplication_It_Should_Be_Return_Amount_Multiplied_By_N()
+        public void If_Multiplicand_Is_Null_It_Should_Be_Throw_Exception()
+        {
+            //Given
+            IExchangeService exchange = new ExchangeService();
+            //When
+            ArgumentNullException exception =
+                Assert.Throws<ArgumentNullException>(()=>exchange.Times(null,2));
+            //Then
+            Assert.Contains("Multiplicand can not be null", exception.Message);
+        }
+
+        [Fact]
+        public void If_Multiplication_It_Should_Be_Return_Amount_Multiplied_By_N()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
