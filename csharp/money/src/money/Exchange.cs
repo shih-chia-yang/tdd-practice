@@ -13,7 +13,9 @@ namespace money
         void AddRate(string source, string to, int rate);
         Money reduce(IExpression source, string to);
 
-        Money Plus(string to,params Money[] addeds);
+        Money Sum(string to,params Money[] addeds);
+
+        Money Exchange(Money source, string to);
     }
     public class ExchangeService : IExchangeService
     {
@@ -38,14 +40,19 @@ namespace money
             rates.Add(new Pair(source, to), rate);
         }
 
-        public Money Plus (string to,params Money[] addeds)
+        public Money Sum (string to,params Money[] addeds)
         {
             if(addeds is null || addeds.Count()==0)
             {
-                throw new ArgumentNullException("addeds can't be null or empty", nameof(Plus));
+                throw new ArgumentNullException("addeds can't be null or empty", nameof(Sum));
             }
             int amount=addeds.Select(x =>x.Amount/Rate(x.Currency,to)).Aggregate((x, y)=>x + y);
             return new Money(amount,to);
+        }
+
+        public Money Exchange(Money source, string to)
+        {
+            return new Money(source.Amount / Rate(source.Currency, to), to);
         }
     }
 

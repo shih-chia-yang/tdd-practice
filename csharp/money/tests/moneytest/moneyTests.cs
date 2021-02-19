@@ -81,7 +81,7 @@ namespace moneytest
             //When
             exchange.AddRate("CHF", "USD", 2);
             // Money result = change.reduce(Bank.Franc(2), "USD");
-            Money result=exchange.Plus("USD",Bank.Franc(2));
+            Money result=exchange.Sum("USD",Bank.Franc(2));
             //Then
             Assert.Equal(Bank.Dollar(1), result);
         }
@@ -98,7 +98,7 @@ namespace moneytest
             Money tenfranc = Bank.Franc(10);
             //When
             exchange.AddRate("CHF", "USD", 2);
-            Money result=exchange.Plus("USD",new Money[]{fivebucks, tenfranc});
+            Money result=exchange.Sum("USD",new Money[]{fivebucks, tenfranc});
             // exchange.reduce(fivebucks.Plus(tenfranc), "USD");
             //Then
             Assert.Equal(Bank.Dollar(10), result);
@@ -118,7 +118,7 @@ namespace moneytest
             //When
             // IExpression sum = new Sum(fiveBucks, tenFranc).Plus(fiveBucks);
             // Money result = exchange.reduce(sum, "USD");
-            Money result=exchange.Plus("USD",new Money[]{fiveBucks, tenFranc,fiveBucks});
+            Money result=exchange.Sum("USD",new Money[]{fiveBucks, tenFranc,fiveBucks});
             //Then
             Assert.Equal(Bank.Dollar(15), result);
         }
