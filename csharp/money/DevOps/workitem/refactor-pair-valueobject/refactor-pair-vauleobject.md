@@ -1,3 +1,3 @@
 # refactor-pair-vauleobject
 
-- [ ] 繼承ValueObject
+- [x] 繼承ValueObject
