@@ -4,7 +4,7 @@ using src.money.Seed;
 
 namespace money
 {
-    public class Money:ValueObject,IExpression
+    public class Money:ValueObject
     {
         public int Amount => _amount;
         protected int _amount{ get; set;}
@@ -19,7 +19,7 @@ namespace money
             _currency = currency;
         }
         
-        public IExpression Times(int multiplier)
+        public Money Times(int multiplier)
         {
             return new Money(Amount * multiplier, Currency);
         }
@@ -30,16 +30,6 @@ namespace money
         {
             yield return Currency;
             yield return Amount;
-        }
-
-        public IExpression Plus(IExpression added)
-        {
-            return new Sum(this,added);
-        }
-
-        public Money reduce(IExchangeService exchange, string to)
-        {
-            return new Money(Amount / exchange.Rate(this.Currency,to), to);
         }
     }
 }

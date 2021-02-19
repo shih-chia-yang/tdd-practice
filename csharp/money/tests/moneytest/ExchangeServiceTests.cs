@@ -48,5 +48,30 @@ namespace moneytest
             //Then
             Assert.Equal(Bank.Dollar(5), result);
         }
+
+        [Fact]
+        public void if_Multiplication_It_Should_Be_Return_Amount_Multiplied_By_N()
+        {
+            //Given
+            IExchangeService exchange = new ExchangeService();
+            var fiveBucks = Bank.Dollar(5);
+            //When
+            var result = exchange.Times(fiveBucks, 8);
+            //Then
+            Assert.Equal(Bank.Dollar(40), result);
+        }
+
+        [Fact]
+        public void if_Sum_And_Multiplication_It_Should_Be_Return_Correct_Total()
+        {
+            //Given
+            IExchangeService exchange = new ExchangeService();
+            var tenBucks = Bank.Dollar(10);
+            var fiveBucks = Bank.Dollar(5);
+            //When
+            Money result =exchange.Times(exchange.Sum(tenBucks.Currency, new Money[]{ tenBucks, fiveBucks }),2);
+            //Then
+            Assert.Equal(Bank.Dollar(30), result);
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace money
 
         Money Sum(string to,params Money[] addeds);
 
+        Money Times(Money source, int multiplier);
+
         Money Exchange(Money source, string to);
     }
     public class ExchangeService : IExchangeService
@@ -53,6 +55,11 @@ namespace money
         public Money Exchange(Money source, string to)
         {
             return new Money(source.Amount / Rate(source.Currency, to), to);
+        }
+
+        public Money Times(Money source, int multiplier)
+        {
+            return new Money(source.Amount * multiplier, source.Currency);
         }
     }
 
