@@ -9,6 +9,6 @@
   - [x] #tags refact/refactor-Money-valueobject add new git branch [[refactor-Money-valueobject.md]]
   - [x] #tags refact/refactor-ExchangeService [[refactor-exchange-service.md]]
     - [x] add new git branch 
-  - [ ] #tags refact/refactor-pair-valueobject [[refactor-pair-vauleobject.md]]
+  - [x] #tags refact/refactor-pair-valueobject [[refactor-pair-vauleobject.md]]
     - [x] add new git branch
     - [x] add md file
