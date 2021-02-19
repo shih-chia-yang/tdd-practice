@@ -16,9 +16,9 @@ namespace money
             _exchangeService.AddRate(source, to, rate);
         }
 
-        public Money reduce(IExpression source,string to)
+        public Money reduce(Money source,string to)
         {
-            return _exchangeService.reduce(source, to);
+            return _exchangeService.Exchange(source, to);
         }
     }
 }
