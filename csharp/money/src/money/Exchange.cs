@@ -12,11 +12,11 @@ namespace money
         int Rate(string source, string to);
         void AddRate(string source, string to, int rate);
 
-        Money Sum(string to,params ICurrencyExpression[] addeds);
+        ICurrencyExpression Sum(string to,params ICurrencyExpression[] addeds);
 
-        Money Times(Money source, int multiplier);
+        ICurrencyExpression Times(ICurrencyExpression source, int multiplier);
 
-        Money Exchange(ICurrencyExpression source, string to);
+        ICurrencyExpression Exchange(ICurrencyExpression source, string to);
     }
     public class ExchangeService : IExchangeService
     {
@@ -39,7 +39,7 @@ namespace money
             rates.Add(new Pair(source, to), rate);
         }
 
-        public Money Sum (string to,params ICurrencyExpression[] addeds)
+        public ICurrencyExpression Sum (string to,params ICurrencyExpression[] addeds)
         {
             if(addeds is null || addeds.Count()==0)
             {
@@ -54,7 +54,7 @@ namespace money
             return new Money(amount,to);
         }
 
-        public Money Exchange(ICurrencyExpression source, string to)
+        public ICurrencyExpression Exchange(ICurrencyExpression source, string to)
         {
             if(source is null)
             {
@@ -67,7 +67,7 @@ namespace money
             return new Money(source.Amount / Rate(source.Currency, to), to);
         }
 
-        public Money Times(Money source, int multiplier)
+        public ICurrencyExpression Times(ICurrencyExpression source, int multiplier)
         {
             if(source is null)
             {

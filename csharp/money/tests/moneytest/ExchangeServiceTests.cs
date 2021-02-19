@@ -45,8 +45,8 @@ namespace moneytest
             var tenFranc = Bank.Franc(10);
             exchange.AddRate("CHF", "USD", 2);
             //When
-            Money sameParamSum=exchange.Sum("USD",new Money[]{fiveBucks, fiveBucks});
-            Money mixedSum=exchange.Sum("USD",new Money[]{fiveBucks, tenFranc,fiveBucks});
+            ICurrencyExpression sameParamSum=exchange.Sum("USD",new Money[]{fiveBucks, fiveBucks});
+            ICurrencyExpression mixedSum=exchange.Sum("USD",new Money[]{fiveBucks, tenFranc,fiveBucks});
             //Then
 
             Assert.Equal(Bank.Dollar(10), sameParamSum);
@@ -77,7 +77,7 @@ namespace moneytest
             var tenFranc = Bank.Franc(10);
             exchange.AddRate("CHF", "USD", 2);
             //When
-            Money result = exchange.Exchange(tenFranc, "USD");
+            ICurrencyExpression result = exchange.Exchange(tenFranc, "USD");
             //Then
             Assert.Equal(Bank.Dollar(5), result);
         }
@@ -100,8 +100,8 @@ namespace moneytest
             //Given
             IExchangeService exchange = new ExchangeService();
             int fakeAmount = 5;
-            var fiveBucks = Bank.Dollar(fakeAmount);
-            var fiveFranc = Bank.Franc(fakeAmount);
+            ICurrencyExpression fiveBucks = Bank.Dollar(fakeAmount);
+            ICurrencyExpression fiveFranc = Bank.Franc(fakeAmount);
             //When
             var result = exchange.Times(fiveBucks, 8);
             //Then
@@ -119,7 +119,7 @@ namespace moneytest
             var tenBucks = Bank.Dollar(10);
             var fiveBucks = Bank.Dollar(5);
             //When
-            Money result =exchange.Times(exchange.Sum(tenBucks.Currency, new Money[]{ tenBucks, fiveBucks }),2);
+            ICurrencyExpression result =exchange.Times(exchange.Sum(tenBucks.Currency, new Money[]{ tenBucks, fiveBucks }),2);
             //Then
             Assert.Equal(Bank.Dollar(30), result);
         }
