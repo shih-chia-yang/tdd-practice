@@ -123,5 +123,23 @@ namespace moneytest
             //Then
             Assert.Equal(Bank.Dollar(30), result);
         }
+
+        [Fact]
+        public void TestSumNoAssignCurrencyThenExchangeTo()
+        {
+            //Given
+            ExchangeService service = new ExchangeService();
+            service.AddRate("CHF", "USD", 2);
+            //When
+            ICurrencyExpression result= service
+                .AddToSum(
+                    new ICurrencyExpression[]
+                    {
+                        Bank.Dollar(5),
+                        Bank.Franc(10)
+                    }).ExchangeTo("USD");
+            //Then
+            Assert.Equal(Bank.Dollar(10), result);
+        }
     }
 }
