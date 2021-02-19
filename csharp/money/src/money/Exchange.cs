@@ -46,7 +46,7 @@ namespace money
             {
                 throw new ArgumentNullException("addeds can't be null or empty", nameof(Sum));
             }
-            int amount=addeds.Select(x =>x.Amount/Rate(x.Currency,to)).Aggregate((x, y)=>x + y);
+            int amount=addeds.Select(x =>Exchange(x,to).Amount).Aggregate((x, y)=>x + y);
             return new Money(amount,to);
         }
 

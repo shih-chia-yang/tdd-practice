@@ -60,12 +60,16 @@ namespace moneytest
         }
 
         [Fact]
+        /// <summary>
+        /// 與ExchangeServiceTests重覆測試，待移除
+        /// If_Sum_Multiple_Money_It_Should_Be_Return_Correct_Total_Money
+        /// </summary>
         public void TestReduceMoney()
         {
             //Given
             ExchangeService exchange = new ExchangeService();
             //When
-            Money result = exchange.reduce(Bank.Dollar(1), "USD");
+            Money result = exchange.Exchange(Bank.Dollar(1), "USD");
             //Then
             Assert.Equal(Bank.Dollar(1), result);
         }
@@ -73,6 +77,7 @@ namespace moneytest
         [Fact]
         /// <summary>
         /// 與ExchangeServiceTests重覆測試，待移除
+        /// If_Sum_Multiple_Money_It_Should_Be_Return_Correct_Total_Money
         /// </summary>
         public void TestReduceMoneyDifferentCurrency()
         {
@@ -89,6 +94,7 @@ namespace moneytest
         [Fact]
         /// <summary>
         /// 與ExchangeServiceTests重覆測試，待移除
+        /// If_Sum_Multiple_Money_It_Should_Be_Return_Correct_Total_Money
         /// </summary>
         public void TestMixedAddition()
         {
@@ -107,6 +113,7 @@ namespace moneytest
         [Fact]
         /// <summary>
         /// 與ExchangeServiceTests重覆測試，待移除
+        /// If_Sum_Multiple_Money_It_Should_Be_Return_Correct_Total_Money
         /// </summary>
         public void TestSumPlusMoney()
         {

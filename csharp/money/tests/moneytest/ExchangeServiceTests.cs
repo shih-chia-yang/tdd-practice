@@ -28,11 +28,12 @@ namespace moneytest
             var tenFranc = Bank.Franc(10);
             exchange.AddRate("CHF", "USD", 2);
             //When
-            Money result1=exchange.Sum("USD",new Money[]{fiveBucks, tenFranc,fiveBucks});
-            Money result2=exchange.Sum("USD",new Money[]{fiveBucks, tenFranc});
+            Money sameParamSum=exchange.Sum("USD",new Money[]{fiveBucks, fiveBucks});
+            Money mixedSum=exchange.Sum("USD",new Money[]{fiveBucks, tenFranc,fiveBucks});
             //Then
-            Assert.Equal(Bank.Dollar(15), result1);
-            Assert.Equal(Bank.Dollar(10), result2);
+
+            Assert.Equal(Bank.Dollar(10), sameParamSum);
+            Assert.Equal(Bank.Dollar(15), mixedSum);
         }
 
         [Fact]
