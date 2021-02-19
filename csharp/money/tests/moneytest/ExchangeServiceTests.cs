@@ -8,6 +8,7 @@ namespace moneytest
 {
     public class ExchangeServiceTests
     {
+
         [Fact]
         public void if_ParamArray_is_null_or_Empty_It_Should_Be_Throw_Exception()
         {
@@ -25,12 +26,14 @@ namespace moneytest
         {
             //Given
             IExchangeService exchange = new ExchangeService();
+            var Bucks=FakeDataBuilder.MakeDollar(1);
+            var Franc=FakeDataBuilder.MakeFranc(10);
             //When
             ArgumentNullException exception=
                 Assert.Throws<ArgumentNullException>(()=>
                     exchange.Sum(
                         null,
-                        new ICurrencyExpression[]{Bank.Dollar(1),Bank.Franc(10)}
+                        new ICurrencyExpression[]{Bucks,Franc}
                         ));
             //Then
             Assert.Contains("addeds contains diff currency,mush be assign currency", exception.Message);
@@ -41,16 +44,21 @@ namespace moneytest
         {
             //Given
             IExchangeService exchange = new ExchangeService();
-            var fiveBucks = Bank.Dollar(5);
-            var tenFranc = Bank.Franc(10);
+            var fiveBucks = FakeDataBuilder.MakeDollar(5);
+            var tenFranc = FakeDataBuilder.MakeFranc(10);
             exchange.AddRate("CHF", "USD", 2);
             //When
-            ICurrencyExpression sameParamSum=exchange.Sum("USD",new Money[]{fiveBucks, fiveBucks});
-            ICurrencyExpression mixedSum=exchange.Sum("USD",new Money[]{fiveBucks, tenFranc,fiveBucks});
+            ICurrencyExpression sameParamSum=exchange
+                .Sum(new Money[]{fiveBucks, fiveBucks})
+                .ExchangeTo("USD");
+
+            ICurrencyExpression mixedSum=exchange
+                .Sum(new Money[]{fiveBucks, tenFranc,fiveBucks})
+                .ExchangeTo("USD");
             //Then
 
-            Assert.Equal(Bank.Dollar(10), sameParamSum);
-            Assert.Equal(Bank.Dollar(15), mixedSum);
+            Assert.Equal(FakeDataBuilder.MakeDollar(10), sameParamSum);
+            Assert.Equal(FakeDataBuilder.MakeDollar(15), mixedSum);
         }
 
         [Fact]
@@ -61,7 +69,7 @@ namespace moneytest
             //When
             ArgumentNullException exception=
                 Assert.Throws<ArgumentNullException>(()=>
-                    exchange.Exchange(Bank.Dollar(1),null));
+                    exchange.Exchange(FakeDataBuilder.MakeDollar(1),null));
             //Then
             Assert.Contains("Exchange must assign Currency", exception.Message);
             ArgumentNullException sourceException=Assert
@@ -74,12 +82,12 @@ namespace moneytest
         {
             //Given
             IExchangeService exchange = new ExchangeService();
-            var tenFranc = Bank.Franc(10);
+            var tenFranc = FakeDataBuilder.MakeFranc(10);
             exchange.AddRate("CHF", "USD", 2);
             //When
             ICurrencyExpression result = exchange.Exchange(tenFranc, "USD");
             //Then
-            Assert.Equal(Bank.Dollar(5), result);
+            Assert.Equal(FakeDataBuilder.MakeDollar(5), result);
         }
 
         [Fact]
@@ -87,7 +95,7 @@ namespace moneytest
         {
             //Given
             IExchangeService exchange = new ExchangeService();
-            var tenFranc = Bank.Franc(10);
+            var tenFranc = FakeDataBuilder.MakeFranc(10);
             //When
             ArgumentNullException exception=
                 Assert.Throws<ArgumentNullException>(()=> 
@@ -117,7 +125,7 @@ namespace moneytest
             //When
             ArgumentNullException exception =
                 Assert.Throws<ArgumentNullException>(()=>
-                    service.Times(Bank.Dollar(5),0));
+                    service.Times(FakeDataBuilder.MakeDollar(5),0));
             //Then
             Assert.Contains("Multiplier can not be 0", exception.Message);
         }
@@ -128,15 +136,15 @@ namespace moneytest
             //Given
             IExchangeService exchange = new ExchangeService();
             int fakeAmount = 5;
-            ICurrencyExpression fiveBucks = Bank.Dollar(fakeAmount);
-            ICurrencyExpression fiveFranc = Bank.Franc(fakeAmount);
+            ICurrencyExpression fiveBucks = FakeDataBuilder.MakeDollar(fakeAmount);
+            ICurrencyExpression fiveFranc = FakeDataBuilder.MakeFranc(fakeAmount);
             //When
             var result = exchange.Times(fiveBucks, 8);
             //Then
-            Assert.True(Bank.Dollar(10).Equals(exchange.Times(fiveBucks, 2)));
-            Assert.True(Bank.Dollar(15).Equals(exchange.Times(fiveBucks,3)));
-            Assert.True(Bank.Franc(10).Equals(exchange.Times(fiveFranc,2)));
-            Assert.True(Bank.Franc(15).Equals(exchange.Times(fiveFranc,3)));
+            Assert.True(FakeDataBuilder.MakeDollar(10).Equals(exchange.Times(fiveBucks, 2)));
+            Assert.True(FakeDataBuilder.MakeDollar(15).Equals(exchange.Times(fiveBucks,3)));
+            Assert.True(FakeDataBuilder.MakeFranc(10).Equals(exchange.Times(fiveFranc,2)));
+            Assert.True(FakeDataBuilder.MakeFranc(15).Equals(exchange.Times(fiveFranc,3)));
         }
 
         [Fact]
@@ -144,8 +152,8 @@ namespace moneytest
         {
             //Given
             IExchangeService service = new ExchangeService();
-            var tenBucks = Bank.Dollar(10);
-            var fiveBucks = Bank.Dollar(5);
+            var tenBucks = FakeDataBuilder.MakeDollar(10);
+            var fiveBucks = FakeDataBuilder.MakeDollar(5);
             service.AddRate("CHF", "USD", 2);
             //When
             ICurrencyExpression result =service
@@ -153,7 +161,7 @@ namespace moneytest
                 .Times(2)
                 .ExchangeTo("USD");
             //Then
-            Assert.Equal(Bank.Dollar(30), result);
+            Assert.Equal(FakeDataBuilder.MakeDollar(30), result);
         }
 
         [Fact]
@@ -167,11 +175,11 @@ namespace moneytest
                 .Sum(
                     new ICurrencyExpression[]
                     {
-                        Bank.Dollar(5),
-                        Bank.Franc(10)
+                        FakeDataBuilder.MakeDollar(5),
+                        FakeDataBuilder.MakeFranc(10)
                     }).ExchangeTo("USD");
             //Then
-            Assert.Equal(Bank.Dollar(10), result);
+            Assert.Equal(FakeDataBuilder.MakeDollar(10), result);
         }
 
         [Fact]
@@ -185,11 +193,11 @@ namespace moneytest
                 .Sum(
                     new ICurrencyExpression[]
                     {
-                        Bank.Dollar(5),
-                        Bank.Franc(10)
+                        FakeDataBuilder.MakeDollar(5),
+                        FakeDataBuilder.MakeFranc(10)
                     }).Times(2).ExchangeTo("USD");
             //Then
-            Assert.Equal(Bank.Dollar(20), result);
+            Assert.Equal(FakeDataBuilder.MakeDollar(20), result);
         }
     }
 }

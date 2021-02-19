@@ -11,14 +11,12 @@ namespace money
     {
         int Rate(string source, string to);
         void AddRate(string source, string to, int rate);
-
-        
     }
     public class ExchangeService : IExchangeService
     {
         private Hashtable rates { get; set; }
 
-        public IReadOnlyCollection<ICurrencyExpression> ExpressionsList => sumList.AsReadOnly();
+        public IEnumerable<ICurrencyExpression> ExpressionsList => sumList.AsReadOnly();
 
         private List<ICurrencyExpression> sumList{ get; set;}
 
@@ -38,6 +36,11 @@ namespace money
         public void AddRate(string source,string to,int rate)
         {
             rates.Add(new Pair(source, to), rate);
+        }
+
+        private void ClearList()
+        {
+            sumList.Clear();
         }
 
         public IExchangeService Sum(params ICurrencyExpression[] addeds)
@@ -66,6 +69,7 @@ namespace money
             int totalAmount=sumList
                     .Select(x => Exchange(x, to).Amount)
                     .Aggregate((x, y) => x + y);
+            ClearList();
             return new Money(totalAmount, to);
         }
 
