@@ -19,3 +19,4 @@
       - [x] Money.Plus與Exchange.Plus Rate方法重覆
     - [x] ExchangeServiceTests與MoneyTests測試方法重覆
     - [x] Money移除IExpression
+    - [x] 移除Times方法

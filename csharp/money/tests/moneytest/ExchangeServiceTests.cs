@@ -54,11 +54,16 @@ namespace moneytest
         {
             //Given
             IExchangeService exchange = new ExchangeService();
-            var fiveBucks = Bank.Dollar(5);
+            int fakeAmount = 5;
+            var fiveBucks = Bank.Dollar(fakeAmount);
+            var fiveFranc = Bank.Franc(fakeAmount);
             //When
             var result = exchange.Times(fiveBucks, 8);
             //Then
-            Assert.Equal(Bank.Dollar(40), result);
+            Assert.True(Bank.Dollar(10).Equals(exchange.Times(fiveBucks, 2)));
+            Assert.True(Bank.Dollar(15).Equals(exchange.Times(fiveBucks,3)));
+            Assert.True(Bank.Franc(10).Equals(exchange.Times(fiveFranc,2)));
+            Assert.True(Bank.Franc(15).Equals(exchange.Times(fiveFranc,3)));
         }
 
         [Fact]

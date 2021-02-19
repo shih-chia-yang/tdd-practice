@@ -9,19 +9,6 @@ namespace moneytest
     public class MoneyTest
     {
         [Fact]
-        [Trait("money","amount")]
-        public void TestMultiplication()
-        {
-            int fakeAmount = 5;
-            var fiveDollar = Bank.Dollar(fakeAmount);
-            var fiveFranc = Bank.Franc(fakeAmount);
-            Assert.True(Bank.Dollar(10).Equals(fiveDollar.Times(2)));
-            Assert.True(Bank.Dollar(15).Equals(fiveDollar.Times(3)));
-            Assert.True(Bank.Franc(10).Equals(fiveFranc.Times(2)));
-            Assert.True(Bank.Franc(15).Equals(fiveFranc.Times(3)));
-        }
-
-        [Fact]
         [Trait("money","equality")]
         public void TestEquality()
         {
