@@ -7,14 +7,10 @@ using System.Linq;
 
 namespace money
 {
-    public interface IExchangeService
+    public interface IExchangeService:IOperatorExpression
     {
         int Rate(string source, string to);
         void AddRate(string source, string to, int rate);
-
-        ICurrencyExpression Sum(string to,params ICurrencyExpression[] addeds);
-
-        ICurrencyExpression Times(ICurrencyExpression source, int multiplier);
 
         ICurrencyExpression Exchange(ICurrencyExpression source, string to);
     }
@@ -74,29 +70,6 @@ namespace money
                 throw new ArgumentNullException("Multiplicand can not be null", nameof(Times));
             }
             return new Money(source.Amount * multiplier, source.Currency);
-        }
-    }
-
-    public class Sum:IOperatorExpression
-    {
-        public IOperatorExpression Augend{ get; private set;}
-        public IOperatorExpression Added{ get; private set; }
-
-        public Sum(IOperatorExpression augend,IOperatorExpression added)
-        {
-            Augend = augend;
-            Added = added;
-        }
-
-        public Money reduce(IExchangeService exchange, string to)
-        {
-            return new Money(Augend.reduce(exchange, to).Amount 
-            + Added.reduce(exchange, to).Amount,to);
-        }
-
-        public IOperatorExpression Times(int multiplier)
-        {
-            return new Sum(Augend.Times(multiplier), Added.Times(multiplier));
         }
     }
 }
