@@ -1,12 +1,10 @@
 using System;
 namespace money
 {
-    public interface IExpression
+    public interface IOperatorExpression
     {
         Money reduce(IExchangeService exchange, string to);
 
-        IExpression Plus(IExpression added);
-
-        IExpression Times(int multiplier);
+        IOperatorExpression Times(int multiplier);
     }
 }

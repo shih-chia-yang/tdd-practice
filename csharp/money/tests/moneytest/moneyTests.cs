@@ -40,7 +40,7 @@ namespace moneytest
             //Given
             var exchange = new ExchangeService();
             // IExpression sum = new Sum(Bank.Dollar(3), Bank.Dollar(5));
-            Money sum = exchange.Sum("USD", new Money[] { Bank.Dollar(3), Bank.Dollar(5) });
+            Money sum = exchange.Sum("USD",new Money[] { Bank.Dollar(3), Bank.Dollar(5) });
             //When
             // Money reduced = exchange.reduce(sum,"USD");
             Money result = exchange.Exchange(sum, "USD");

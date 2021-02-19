@@ -11,23 +11,20 @@ namespace money
     {
         int Rate(string source, string to);
         void AddRate(string source, string to, int rate);
-        Money reduce(IExpression source, string to);
 
-        Money Sum(string to,params Money[] addeds);
+        Money Sum(string to,params ICurrencyExpression[] addeds);
 
         Money Times(Money source, int multiplier);
 
-        Money Exchange(Money source, string to);
+        Money Exchange(ICurrencyExpression source, string to);
     }
     public class ExchangeService : IExchangeService
     {
-        private Hashtable rates = new Hashtable();
-
-        public Money reduce (IExpression source,string to)=>source.reduce(this,to);
+        private Hashtable rates { get; set; }
 
         public ExchangeService()
         {
-            
+            rates= new Hashtable();
         }
 
         public int Rate (string source,string to)
@@ -42,17 +39,22 @@ namespace money
             rates.Add(new Pair(source, to), rate);
         }
 
-        public Money Sum (string to,params Money[] addeds)
+        public Money Sum (string to,params ICurrencyExpression[] addeds)
         {
             if(addeds is null || addeds.Count()==0)
             {
                 throw new ArgumentNullException("addeds can't be null or empty", nameof(Sum));
             }
-            int amount=addeds.Select(x =>Exchange(x,to).Amount).Aggregate((x, y)=>x + y);
+            if(addeds.Select(x=>x.Currency).Distinct().Count()>1 && string.IsNullOrEmpty(to))
+            {
+                throw new ArgumentNullException("addeds contains diff currency,mush be assign currency", nameof(Sum));
+            }
+            string currency = string.IsNullOrEmpty(to)?addeds[0].Currency:to;
+            int amount=addeds.Select(x =>Exchange(x,currency).Amount).Aggregate((x, y)=>x + y);
             return new Money(amount,to);
         }
 
-        public Money Exchange(Money source, string to)
+        public Money Exchange(ICurrencyExpression source, string to)
         {
             return new Money(source.Amount / Rate(source.Currency, to), to);
         }
@@ -63,12 +65,12 @@ namespace money
         }
     }
 
-    public class Sum:IExpression
+    public class Sum:IOperatorExpression
     {
-        public IExpression Augend{ get; private set;}
-        public IExpression Added{ get; private set; }
+        public IOperatorExpression Augend{ get; private set;}
+        public IOperatorExpression Added{ get; private set; }
 
-        public Sum(IExpression augend,IExpression added)
+        public Sum(IOperatorExpression augend,IOperatorExpression added)
         {
             Augend = augend;
             Added = added;
@@ -80,12 +82,7 @@ namespace money
             + Added.reduce(exchange, to).Amount,to);
         }
 
-        public IExpression Plus(IExpression added)
-        {
-            return new Sum(this,added);
-        }
-
-        public IExpression Times(int multiplier)
+        public IOperatorExpression Times(int multiplier)
         {
             return new Sum(Augend.Times(multiplier), Added.Times(multiplier));
         }
