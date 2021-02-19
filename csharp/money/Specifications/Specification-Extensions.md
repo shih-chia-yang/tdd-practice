@@ -16,8 +16,8 @@
     - [x] Exchange物件代表匯兌機制？類似銀行提供匯兌服務，對於銀行來說是一個Services，是否為一個實體？
     - [x] 將Exchange修改為Service，並設計IExchangeService，使用建構子注入
     - [ ] IExchangeService與IExpression重覆方法
-    - [ ] Money、Sum、IExchangeService重覆
-    - [ ] 計算方法是否不應該在Money物件，因Money物件是值物件
+    - [x] Money、Sum、IExchangeService重覆
+    - [x] 計算方法是否不應該在Money物件，因Money物件是值物件
     - [x] param type ExchangeService改為 IExchangeService
   - [ ] 建立Entity
     - [x] 新增Entity.cs
