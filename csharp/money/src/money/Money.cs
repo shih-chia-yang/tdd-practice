@@ -1,10 +1,16 @@
+using System.Runtime.InteropServices;
 using System;
 using System.Collections.Generic;
 using src.money.Seed;
 
 namespace money
 {
-    public class Money:ValueObject
+    public interface ICurrencyExpression
+    {
+        int Amount { get; }
+        string Currency {get;}
+}
+    public class Money:ValueObject,ICurrencyExpression
     {
         public int Amount => _amount;
         protected int _amount{ get; set;}
@@ -18,12 +24,7 @@ namespace money
             _amount = amount;
             _currency = currency;
         }
-        
-        public Money Times(int multiplier)
-        {
-            return new Money(Amount * multiplier, Currency);
-        }
-
+    
         public string GetCurrency() => Currency;
 
         public override IEnumerable<object> GetEquality()

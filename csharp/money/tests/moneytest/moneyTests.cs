@@ -33,49 +33,5 @@ namespace moneytest
             Assert.Equal("USD", Bank.Dollar(5).GetCurrency());
             Assert.Equal("CHF", Bank.Franc(5).GetCurrency());
         }
-
-        [Fact]
-        public void TestReduceSum()
-        {
-            //Given
-            var exchange = new ExchangeService();
-            // IExpression sum = new Sum(Bank.Dollar(3), Bank.Dollar(5));
-            Money sum = exchange.Sum("USD", new Money[] { Bank.Dollar(3), Bank.Dollar(5) });
-            //When
-            // Money reduced = exchange.reduce(sum,"USD");
-            Money result = exchange.Exchange(sum, "USD");
-            //Then
-            Assert.Equal(Bank.Dollar(8), result);
-        }
-
-        [Fact]
-        public void TestSumTimesMoney()
-        {
-            //Given
-            ExchangeService exchange = new ExchangeService();
-            Money fiveBucks = Bank.Dollar(5);
-            Money tenFranc = Bank.Franc(10);
-            exchange.AddRate("CHF", "USD", 2);
-            //When
-            Money mixedTotal=exchange.Times(exchange.Sum("USD", new Money[]{ fiveBucks, tenFranc }),2);
-            // IExpression sum = new Sum(fiveBucks, tenFranc).Times(2);
-            Money result = exchange.Exchange(mixedTotal, "USD");
-            //Then
-            Assert.Equal(Bank.Dollar(20), result);
-        }
-
-        [Fact]
-        public void TestPlusSameCurrencyReturnMoney()
-        {
-            //Given
-            ExchangeService exchange = new ExchangeService();
-            exchange.AddRate("CHF", "USD", 2);
-            //When
-            Money sum = exchange.Sum("USD", Bank.Dollar(1), Bank.Dollar(1));
-            // IExpression sum = Bank.Dollar(1).Plus(Bank.Dollar(1));
-            Money result = exchange.Exchange(sum, "USD");
-            //Then
-            Assert.IsType<Money>(result);
-        }
     }
 }
