@@ -10,7 +10,7 @@ namespace moneytest
     {
 
         [Fact]
-        public void if_ParamArray_is_null_or_Empty_It_Should_Be_Throw_Exception()
+        public void If_ParamArray_is_null_or_Empty_It_Should_Be_Throw_Exception()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
@@ -62,7 +62,7 @@ namespace moneytest
         }
 
         [Fact]
-        public void if_Exchange_Params_Is_Null_It_Should_Be_Throw_Exception()
+        public void If_Exchange_Params_Is_Null_It_Should_Be_Throw_Exception()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
@@ -78,7 +78,7 @@ namespace moneytest
         }
 
         [Fact]
-        public void if_Currency_Exchange_It_Should_Be_Return_Assign_Currency_And_Correct_Amount()
+        public void If_Currency_Exchange_It_Should_Be_Return_Assign_Currency_And_Correct_Amount()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
