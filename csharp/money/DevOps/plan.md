@@ -10,5 +10,5 @@
   - [x] #tags refact/refactor-ExchangeService [[refactor-exchange-service.md]]
     - [x] add new git branch 
   - [ ] #tags refact/refactor-pair-valueobject [[refactor-pair-vauleobject.md]]
-    - [ ] add new git branch
-    - [ ] add md file
+    - [x] add new git branch
+    - [x] add md file
