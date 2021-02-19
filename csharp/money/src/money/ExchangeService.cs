@@ -40,9 +40,9 @@ namespace money
             rates.Add(new Pair(source, to), rate);
         }
 
-        public IExchangeService AddToSum(params ICurrencyExpression[] added)
+        public IExchangeService Sum(params ICurrencyExpression[] addeds)
         {
-            sumList.AddRange(added);
+            sumList.AddRange(addeds);
             return this;
         }
 
@@ -79,7 +79,17 @@ namespace money
             {
                 throw new ArgumentNullException("Exchange must assign Currency", nameof(Exchange));
             }
+            if(rates.Count==0)
+            {
+                throw new ArgumentNullException("Before Exchange must be setting Exchange rates", nameof(Exchange));
+            }
             return new Money(source.Amount / Rate(source.Currency, to), to);
+        }
+
+        public IExchangeService Times(int multiplier)
+        {
+           sumList=sumList.Select(x => Times(x, multiplier)).ToList();
+           return this;
         }
 
         public ICurrencyExpression Times(ICurrencyExpression source, int multiplier)
@@ -87,6 +97,10 @@ namespace money
             if(source is null)
             {
                 throw new ArgumentNullException("Multiplicand can not be null", nameof(Times));
+            }
+            if(multiplier ==0)
+            {
+                throw new ArgumentNullException("Multiplier can not be 0", nameof(Times));
             }
             return new Money(source.Amount * multiplier, source.Currency);
         }
