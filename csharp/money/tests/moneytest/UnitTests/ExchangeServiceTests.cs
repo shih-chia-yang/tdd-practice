@@ -116,6 +116,19 @@ namespace moneytest
         }
 
         [Fact]
+        public void Null_ExpressionsList_to_ExchangeTo_then_throw_exception()
+        {
+            //Given
+            IExchangeService exchange = new ExchangeService();
+            //When
+            ArgumentException exception = Assert.Throws<ArgumentException>(
+                () => exchange.ExchangeTo("USD")
+            );
+            //Then
+            Assert.Contains("ExpressionsList can not be empty", exception.Message);
+        }
+
+        [Fact]
         public void Invalid_params_to_Exchange_then_throw_exception()
         {
             //Given
@@ -182,6 +195,19 @@ namespace moneytest
                     service.Times(FakeDataBuilder.MakeDollar(5),0));
             //Then
             Assert.Contains("Multiplier can not be 0", exception.Message);
+        }
+
+        [Fact]
+        public void Null_ExpressionsList_to_Times_then_throw_exception()
+        {
+            //Given
+            IExchangeService service = new ExchangeService();
+            //When
+            ArgumentException exception = Assert.Throws<ArgumentException>(
+                () => service.Times(2)
+            );
+            //Then
+            Assert.Contains("ExpressionsList can not be empty", exception.Message);
         }
 
         [Fact]

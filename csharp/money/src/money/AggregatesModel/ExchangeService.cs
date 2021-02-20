@@ -94,6 +94,10 @@ namespace money
         
         public ICurrencyExpression ExchangeTo(string to)
         {
+            if(sumList.Count.Equals(0))
+            {
+                throw new ArgumentException("ExpressionsList can not be empty", nameof(ExchangeTo));
+            }
             int totalAmount=sumList
                     .Select(x => Exchange(x, to).Amount)
                     .Aggregate((x, y) => x + y);
@@ -120,6 +124,10 @@ namespace money
 
         public IExchangeService Times(int multiplier)
         {
+            if(sumList.Count.Equals(0))
+            {
+                throw new ArgumentException("ExpressionsList can not be empty", nameof(Times));
+            }
            sumList=sumList.Select(x => Times(x, multiplier)).ToList();
            return this;
         }
