@@ -13,6 +13,10 @@
   - [x] #tags refact/refactor-pair-valueobject [[refactor-pair-vauleobject.md]]
     - [x] add new git branch
     - [x] add md file
-  - [ ] #tags test/clean-repeat-test-method [[test-clean-repeat-test-methods.md]]
+  - [x] #tags test/clean-repeat-test-method [[test-clean-repeat-test-methods.md]]
+    - [x] add new git branch
+    - [x] add md file
+  - [ ] #tags design validation object
+    - [ ] #tags feat/add-validation-object
     - [ ] add new git branch
     - [ ] add md file
