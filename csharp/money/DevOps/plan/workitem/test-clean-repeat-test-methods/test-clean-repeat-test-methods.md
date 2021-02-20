@@ -1,3 +1,25 @@
 # test-clean-repeat-test-methods
 
 - [ ] #tags remove repeat test method
+  - [x] remove If_SumAndTime_ThenExchange_To_AssignedCurrency_It_Should_Be_Return_Sum_Multiplied_By_N()
+    - [x] 與if_Sum_And_Multiplication_It_Should_Be_Return_Correct_Total()重覆
+  - [x] If_Sum_Multiple_Money_It_Should_Be_Return_Correct_Total_Money更名為If_Sum_Multiple_Money_It_Should_Be_Clean_ExpressionList
+    - [x] 主要測試當使用Sum(params)時，轉換匯率後是否有清除ExpressionList 
+    - [x] 轉換匯率功能已與其他測試方法重疊
+  - [x]If_SumNoAssignCurrency_Then_Exchange_To_AssignedCurrency_It_Should_Be_Correct_Currency更名為If_Use_ExchangeTo_Method_It_Should_Be_Correct_Currency
+  - [x] if_Sum_And_Multiplication_It_Should_Be_Return_Correct_Total更名if_Sum_And_Multiplication_Then_ExchangeTo_It_Should_Be_Return_Correct_Total
+  - [x] 新增 If_AddRate_Then_RatesList_It_Should_be_Equal_Input，測試AddRate方法是否正常
+  - [x]新增UnitTests資料夾
+    - [x] 新增 If_Invalid_Paramsters_Input_AddRate_It_Should_Throw_Exception()
+    - [x] 新增 If_Invalid_Parameter_To_Rate_It_Should_Be_Throw_Exception()
+  - [x]新增Functional資料夾
+    - [x] 新增ExchangeScenario.cs
+    - [x] ExchangeTo_then_return_correct_currency()
+    - [x] Sum_and_Times_N_and_ExchangeTo_then_return_correct_total()
+    - [x] After_ExchangeTo_currency_then_clean_ExpressionList
+  - [x] 測試方法修改格式
+    - [x] 開頭第一個大寫
+    - [x] 其餘小寫
+    - [x] Methods name/Filed name/Class name駝峰命名 
+    - [x] waht then格式 or how when then
+      - [x] how when it should be `result` 暫時不使用，有時命名過長

@@ -11,5 +11,6 @@ namespace moneytest
         public static Money MakeDollar(int amount)=> new Money(amount, "USD");
 
         public static Money MakeFranc(int amount) => new Money(amount, "CHF");
+
     }
 }
