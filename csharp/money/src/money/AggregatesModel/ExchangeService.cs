@@ -9,11 +9,15 @@ namespace money
 {
     public interface IExchangeService:IOperatorExpression
     {
+        Hashtable RatesList{ get; }
+        IEnumerable<ICurrencyExpression> ExpressionsList{ get; }
         int Rate(string source, string to);
         void AddRate(string source, string to, int rate);
     }
     public class ExchangeService : IExchangeService
     {
+
+        public Hashtable RatesList => rates;
         private Hashtable rates { get; set; }
 
         public IEnumerable<ICurrencyExpression> ExpressionsList => sumList.AsReadOnly();
@@ -35,6 +39,18 @@ namespace money
         }
         public void AddRate(string source,string to,int rate)
         {
+            if(string.IsNullOrEmpty(source))
+            {
+                throw new ArgumentException("Source can not be null or empty", nameof(source));
+            }
+            if(string.IsNullOrEmpty(to))
+            {
+                throw new ArgumentException("To can not be null or empty");
+            }
+            if(rate.Equals(0))
+            {
+                throw new ArgumentException("Rate can not be zero", nameof(rate));
+            }
             rates.Add(new Pair(source, to), rate);
         }
 
