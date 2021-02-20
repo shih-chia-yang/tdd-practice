@@ -12,5 +12,14 @@
   - [x]新增UnitTests資料夾
     - [x] 新增 If_Invalid_Paramsters_Input_AddRate_It_Should_Throw_Exception()
     - [x] 新增 If_Invalid_Parameter_To_Rate_It_Should_Be_Throw_Exception()
-  - [ ]新增Functional資料夾
-    - [ ] 新增ExchangeScenario.cs
+  - [x]新增Functional資料夾
+    - [x] 新增ExchangeScenario.cs
+    - [x] ExchangeTo_then_return_correct_currency()
+    - [x] Sum_and_Times_N_and_ExchangeTo_then_return_correct_total()
+    - [x] After_ExchangeTo_currency_then_clean_ExpressionList
+  - [x] 測試方法修改格式
+    - [x] 開頭第一個大寫
+    - [x] 其餘小寫
+    - [x] Methods name/Filed name/Class name駝峰命名 
+    - [x] waht then格式 or how when then
+      - [x] how when it should be `result` 暫時不使用，有時命名過長

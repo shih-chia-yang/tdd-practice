@@ -14,7 +14,7 @@ namespace moneytest
         [InlineData("","USD",2,"Source can not be null or empty")]
         [InlineData("CHF","",2,"To can not be null or empty")]
         [InlineData("CHF","USD",0,"Rate can not be zero")]
-        public void If_Invalid_Paramsters_Input_AddRate_It_Should_Throw_Exception(
+        public void Invalid_paramsters_to_AddRate_then_throw_exception(
             string source,
             string to,
             int rate,
@@ -32,7 +32,7 @@ namespace moneytest
         }
 
         [Fact]
-        public void If_AddRate_Then_RatesList_It_Should_be_Equal_Input()
+        public void AddRate_Then_RatesList_have_value()
         {
             //Given
             string fakeFranc = "CHF";
@@ -53,7 +53,7 @@ namespace moneytest
         [InlineData("","USD","Source can not be null or empty")]
         [InlineData("CHF","","To can not be null or empty")]
         [InlineData("123","456","This pair dose not exist")]        
-        public void If_Invalid_Parameter_To_Rate_It_Should_Be_Throw_Exception(
+        public void Invalid_parameters_to_Rate_then_throw_exception(
             string source,
             string to,
             string errorMessage
@@ -71,17 +71,22 @@ namespace moneytest
         }
 
         [Fact]
-        public void After_AddRate_Then_Get_Rate_It_Should_be_Return_Rate()
+        public void After_AddRate_then_input_currency_get_Rate()
         {
             //Given
-            
+            string fakeFranc = "CHF";
+            string fakeDollar = "USD";
+            int fakeRate = 2;
+            IExchangeService exchange = new ExchangeService();
+            exchange.AddRate(fakeFranc, fakeDollar, fakeRate);
             //When
-            
+            int actual = exchange.Rate(fakeFranc, fakeDollar);
             //Then
+            Assert.Equal(fakeRate, actual);
         }
 
         [Fact]
-        public void If_ParamArray_is_null_or_Empty_It_Should_Be_Throw_Exception()
+        public void Invalid_parameters_to_Sum_then_throw_exception()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
@@ -93,7 +98,7 @@ namespace moneytest
         }
 
         [Fact]
-        public void If_Array_Contains_Diff_Money_And_Param_to_Is_Null_It_Should_Be_Throw_Exception()
+        public void Sum_Params_contains_diff_money_and_param_To_is_null_then_throw_exception()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
@@ -111,24 +116,7 @@ namespace moneytest
         }
 
         [Fact]
-        public void If_After_ExchangeTo_Currency_It_Should_Be_Clean_ExpressionList()
-        {
-            //Given
-            IExchangeService exchange = new ExchangeService();
-            var fiveBucks = FakeDataBuilder.MakeDollar(5);
-            var tenFranc = FakeDataBuilder.MakeFranc(10);
-            exchange.AddRate("CHF", "USD", 2);
-            //When
-            ICurrencyExpression sameParamSum=exchange
-                .Sum(new Money[]{fiveBucks, fiveBucks})
-                .ExchangeTo("USD");
-            int counts = exchange.ExpressionsList.Count();
-            //Then
-            Assert.Equal(0, counts);
-        }
-
-        [Fact]
-        public void If_Exchange_Params_Is_Null_It_Should_Be_Throw_Exception()
+        public void Invalid_params_to_Exchange_then_throw_exception()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
@@ -144,7 +132,7 @@ namespace moneytest
         }
         
         [Fact]
-        public void If_Not_Setting_Rate_Then_Exchange_It_Should_Be_Throw_Exception()
+        public void Not_setting_Rate_Then_Exchange_then_throw_exception()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
@@ -158,7 +146,7 @@ namespace moneytest
         }
 
         [Fact]
-        public void If_Currency_Exchange_It_Should_Be_Return_Assign_Currency_And_Correct_Amount()
+        public void Exchange_currency_then_return_assign_currency_and_correct_amount()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
@@ -171,7 +159,7 @@ namespace moneytest
         }
 
         [Fact]
-        public void If_Multiplicand_Is_Null_It_Should_Be_Throw_Exception()
+        public void Multiplicand_is_null_then_throw_exception()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
@@ -184,7 +172,7 @@ namespace moneytest
         }
 
         [Fact]
-        public void If_Multiplier_Equal_0_It_Should_Be_Throw_Exception()
+        public void Multiplier_equal_0_then_throw_exception()
         {
             //Given
             IExchangeService service = new ExchangeService();
@@ -197,7 +185,7 @@ namespace moneytest
         }
 
         [Fact]
-        public void If_Multiplication_It_Should_Be_Return_Amount_Multiplied_By_N()
+        public void Currency_Times_N_then_return_amount_multiplied_by_N()
         {
             //Given
             IExchangeService exchange = new ExchangeService();
@@ -211,41 +199,6 @@ namespace moneytest
             Assert.True(FakeDataBuilder.MakeDollar(15).Equals(exchange.Times(fiveBucks,3)));
             Assert.True(FakeDataBuilder.MakeFranc(10).Equals(exchange.Times(fiveFranc,2)));
             Assert.True(FakeDataBuilder.MakeFranc(15).Equals(exchange.Times(fiveFranc,3)));
-        }
-
-        [Fact]
-        public void if_Sum_And_Multiplication_Then_ExchangeTo_It_Should_Be_Return_Correct_Total()
-        {
-            //Given
-            IExchangeService service = new ExchangeService();
-            var tenBucks = FakeDataBuilder.MakeDollar(10);
-            var fiveBucks = FakeDataBuilder.MakeDollar(5);
-            service.AddRate("CHF", "USD", 2);
-            //When
-            ICurrencyExpression result =service
-                .Sum(new Money[]{ tenBucks, fiveBucks })
-                .Times(2)
-                .ExchangeTo("USD");
-            //Then
-            Assert.Equal(FakeDataBuilder.MakeDollar(30), result);
-        }
-
-        [Fact]
-        public void If_Use_ExchangeTo_Method_It_Should_Be_Correct_Currency()
-        {
-            //Given
-            ExchangeService service = new ExchangeService();
-            service.AddRate("CHF", "USD", 2);
-            //When
-            ICurrencyExpression result= service
-                .Sum(
-                    new ICurrencyExpression[]
-                    {
-                        FakeDataBuilder.MakeDollar(5),
-                        FakeDataBuilder.MakeFranc(10)
-                    }).ExchangeTo("USD");
-            //Then
-            Assert.Equal(FakeDataBuilder.MakeDollar(10), result);
         }
     }
 }
