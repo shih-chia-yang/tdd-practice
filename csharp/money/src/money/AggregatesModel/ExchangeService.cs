@@ -32,8 +32,20 @@ namespace money
 
         public int Rate (string source,string to)
         {
+            if(string.IsNullOrEmpty(source))
+            {
+                throw new ArgumentException("Source can not be null or empty", nameof(source));
+            }
+            if(string.IsNullOrEmpty(to))
+            {
+                throw new ArgumentException("To can not be null or empty",nameof(to));
+            }
             if(source.Equals(to))return 1;
             Pair targetPair =new Pair(source, to);
+            if(!rates.ContainsKey(targetPair))
+            {
+                throw new ArgumentException("This pair dose not exist",nameof(Rate));
+            }
             int rate = (int)rates[targetPair];
             return rate;
         }
@@ -45,7 +57,7 @@ namespace money
             }
             if(string.IsNullOrEmpty(to))
             {
-                throw new ArgumentException("To can not be null or empty");
+                throw new ArgumentException("To can not be null or empty",nameof(to));
             }
             if(rate.Equals(0))
             {

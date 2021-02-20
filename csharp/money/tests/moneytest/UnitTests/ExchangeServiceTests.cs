@@ -49,6 +49,37 @@ namespace moneytest
             Assert.Equal(fakeRate, rate);
         }
 
+        [Theory]
+        [InlineData("","USD","Source can not be null or empty")]
+        [InlineData("CHF","","To can not be null or empty")]
+        [InlineData("123","456","This pair dose not exist")]        
+        public void If_Invalid_Parameter_To_Rate_It_Should_Be_Throw_Exception(
+            string source,
+            string to,
+            string errorMessage
+        )
+        {
+            //Given
+            IExchangeService service = new ExchangeService();
+            service.AddRate("CHF", "USD", 2);
+            //When
+            ArgumentException exception = Assert.Throws<ArgumentException>(
+                ()=>service.Rate(source,to)
+            );
+            //Then
+            Assert.Contains(errorMessage,exception.Message);
+        }
+
+        [Fact]
+        public void After_AddRate_Then_Get_Rate_It_Should_be_Return_Rate()
+        {
+            //Given
+            
+            //When
+            
+            //Then
+        }
+
         [Fact]
         public void If_ParamArray_is_null_or_Empty_It_Should_Be_Throw_Exception()
         {
