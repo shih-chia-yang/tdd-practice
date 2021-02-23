@@ -1,8 +1,8 @@
 # print()
 ans=input('Would you like to continue?')
-if ans=='no' or ans=='n':
+if ans in ('no','n'):
     print('Exiting')
-elif ans =='yes' or ans =='y':
+elif ans in ('yes','y'):
     print('Continuing...')
     print('COmplete!')
 else:

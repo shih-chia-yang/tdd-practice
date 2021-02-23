@@ -1,13 +1,9 @@
 
 first_value =True
-second_value='6'
+second_value=input(f' pick a number: ')
 if first_value:
-    if second_value =='7':
-        print('the value is 7')
-    elif second_value =='8':
-        print('the value is 8')
-    elif second_value=='9':
-        print('the value is 9')
+    if second_value in ('7','8','9'):
+        print(f'the value is {second_value}')
     else:
         print('the value is not one we are looking for')
 print('finished!')
