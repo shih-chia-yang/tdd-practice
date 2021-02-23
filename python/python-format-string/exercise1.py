@@ -39,3 +39,27 @@ print(first,second)
 print(first,second,third)
 print(first,second,third,sep='-')
 print(first,second,third,sep='-',end='.')
+
+# \'
+
+print('\'')
+# \"
+print('\"')
+# \\
+print('\\')
+# \a
+print('\a')
+# \b
+print('\b')
+# \f
+print('\f')
+# \n
+print('\n')
+# \r
+print('1234\r\n1234')
+# \t
+print('\t')
+# \v
+print('\v')
+
+
