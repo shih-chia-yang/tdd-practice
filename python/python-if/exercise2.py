@@ -38,7 +38,7 @@ second_number=0
 true_value=True
 false_value=False
 
-if (first_number>1 and first_number<10):
+if (10>first_number>1):
     print('the value os between 1 and 10')
 if(first_number>1 or second_number>1):
     print('at least one value is greater then 1')

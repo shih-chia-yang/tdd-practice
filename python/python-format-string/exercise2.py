@@ -35,9 +35,15 @@ print(message.find('t'))
 print(message.find('T'))
 
 message='    middle    '
+#去除左邊的空白
 print('.'+message.lstrip()+'.')
+#去除右邊的空白
 print('.'+message.rstrip()+'.')
+#去除左邊與右邊的空白
 print('.'+message.strip()+'.')
+#移除所有w字元
+message="www.python.org"
+print(message.strip("w"))
 
 message='brevity is thne essence of wit'
 message=message.replace('essence','soul')
@@ -48,3 +54,6 @@ print(message.rjust(20))
 print(message.rjust(20,'-'))
 print(message.ljust(20))
 print(message.ljust(20,'-'))
+
+print(" ".join(["join","puts","spaces","between","elements"]))
+print("::".join(["join","puts","spaces","between","elements"]))
