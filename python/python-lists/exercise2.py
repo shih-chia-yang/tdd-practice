@@ -1,11 +1,9 @@
-def create_divider(title,count=0):
-    length=80
-    while count!=0:count -=1;print(' ')
-    else:print(f'{title:-^{length}}')
-    print(' ')
+import sys
+sys.path.append('../../python')
+from main_module import create_divider
 
 
-create_divider('test a value for inclusion in a list',1)
+create_divider('test a value for inclusion in a list',1,"*")
 numbers=[1,3,5]
 print(5 in numbers)
 print(8 in numbers)
@@ -13,14 +11,14 @@ print(8 in numbers)
 print(5 not in numbers)
 print(8 not in numbers)
 
-create_divider('loop through a list',1)
+create_divider('loop through a list',1,"*")
 
 cities=['chicage','london','tokyo']
 
 for city in cities:
     print(city)
 
-create_divider('break out of a for loop',1)
+create_divider('break out of a for loop',1,"*")
 
 numbers=[42,77,16,101,23,8,4,15,55]
 numbers.sort()
@@ -29,7 +27,7 @@ for number in numbers:
     if number>42:break;
     print(number)
 
-create_divider('use an else statement')
+create_divider('use an else statement',1,"*")
 
 import random
 numbers=[]
@@ -47,7 +45,7 @@ else:
 
 print('complete')
 
-create_divider('use a contunue statement',1)
+create_divider('use a contunue statement',1,"*")
 
 values=["laptop",7,"phone",3,"dslr",5]
 equipment=[]
@@ -58,7 +56,7 @@ for value in values:
     equipment.append(value)
 print(equipment)
 
-create_divider('create nested for loops',1)
+create_divider('create nested for loops',1,"*")
 
 suits=["hearts","spades","clubs","diamonds"]
 ranks=["2","3","4","5","6","7","8","9","10","jack","queen","kind","ace"]
@@ -67,7 +65,7 @@ for suit in suits:
     for rank in ranks:
         print(f'{rank} or {suit}')
 
-create_divider('choose randomly from a list')
+create_divider('choose randomly from a list',1,"*")
 
 numbers=[42,77,16,101,23,8,4,15,55]
 selected_number=random.choice(numbers)
