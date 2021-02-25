@@ -1,6 +1,6 @@
 # create a list of values
 import sys
-sys.path.append('../../python')
+sys.path.append('../../../python')
 from main_module import create_divider
 
 create_divider('create a list of values',1,"*")

@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../../python')
+sys.path.append('../../../python')
 from main_module import create_divider
 
 
