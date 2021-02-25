@@ -1,14 +1,12 @@
-from argparse import ArgumentError
-from logging import exception
 import random
 
 class GameRound:
     def __init__(self):
         self.__cards=[]
         self.__suits_number={"spades":4,"hearts":2,"diamonds":1,"clubs":0}
-        self.__ranks_number={3:0,4:1,5:2,6:3
-        ,7:4,8:5,9:6,10:7,"jack":8,
-        "queen":9,"king":10,"ace":11,2:12}
+        self.__ranks_number={3:0,4:5,5:10,6:15
+        ,7:20,8:25,9:30,10:35,"jack":40,
+        "queen":45,"king":50,"ace":55,2:60}
         self.create_cards()
 
     @property
@@ -18,7 +16,7 @@ class GameRound:
     def create_cards(self):
         suits=["spades","hearts","diamonds","clubs"]
         ranks=["ace",2,3,4,5,6,7,8,9,10,"jack","queen","king"]
-        self.__cards={"{0} of {1}".format(rank,suit): self.__suits_number[suit]+self.__ranks_number[rank] for suit in suits for rank in ranks}
+        self.__cards={f'{rank} of {suit}': self.__suits_number[suit]+self.__ranks_number[rank] for suit in suits for rank in ranks}
         return self.__cards
     
     def dealing(self,number=1):
@@ -30,9 +28,11 @@ class GameRound:
                 self.cards.pop(card)
             return cards[0]
     
-    def compare(card,nextcard):
-        pass
+    def compare(self,card,nextcard):
+        difference=self.__cards[card] - self.__cards[nextcard]
+        return difference<0
 
     def define_compare_rules(self):
-
         pass
+
+

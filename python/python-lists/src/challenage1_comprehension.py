@@ -17,12 +17,12 @@ class Game:
             any_number=input('any number any card :')
             if any_number.isnumeric():
                 any_number =int(any_number)
-                self.selected_cards=random.choices(self.all_cards,k=any_number)
+                self.selected_cards=random.choices(list(self.all_cards),k=any_number)
             else:
                 print('please enter a number ,not string or others')
         self.extract()
     def extract(self):
         for selected_card in self.selected_cards:
-            self.all_cards.remove(selected_card)
+            self.all_cards.pop(selected_card)
 
 

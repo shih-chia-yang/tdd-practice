@@ -1,11 +1,12 @@
-from logging import exception
-from argparse import ArgumentError
 import sys,io
 sys.path.append('../src')
+from json.tool import main
 from unittest import TestCase,mock
 from GameRound import GameRound
 
+
 class PorkerTests(TestCase):
+
     def setUp(self):
         self.gameRound=GameRound()
         self.gameRound.create_cards()
@@ -28,5 +29,13 @@ class PorkerTests(TestCase):
             while i<total:
                 self.gameRound.dealing()
                 i+=1
-    def define_compare_rules_should_be_return_dict(self):
-        pass
+
+    def test_compare_cards_should_be_return_bool(self):
+        diff1=self.gameRound.compare("7 of spades","ace of hearts")
+        self.assertEqual(True,diff1)
+        diff2=self.gameRound.compare("2 of clubs","ace of hearts")
+        self.assertEqual(False,diff2)
+
+
+if __name__=="__main__":
+    main()
