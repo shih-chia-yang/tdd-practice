@@ -29,12 +29,19 @@ class PorkerTests(TestCase):
             while i<total:
                 self.gameRound.dealing()
                 i+=1
+    def test_get_card_number_from_cards(self):
+        self.assertEqual(57,self.gameRound.get_card_number("ace of hearts"))
 
-    def test_compare_cards_should_be_return_bool(self):
+    def test_compare_one_cards_should_be_return_bool(self):
         diff1=self.gameRound.compare("7 of spades","ace of hearts")
         self.assertEqual(True,diff1)
         diff2=self.gameRound.compare("2 of clubs","ace of hearts")
         self.assertEqual(False,diff2)
+    
+    def test_compare_two_cards_should_be_return_bool(self):
+        diff=self.gameRound.compare(["7 of spades","7 of clubs"],["7 of hearts","7 of diamonds"])
+        self.assertEqual(False,diff)
+    
 
 
 if __name__=="__main__":

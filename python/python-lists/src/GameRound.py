@@ -1,3 +1,5 @@
+from calendar import c
+from functools import reduce
 import random
 
 class GameRound:
@@ -19,6 +21,12 @@ class GameRound:
         self.__cards={f'{rank} of {suit}': self.__suits_number[suit]+self.__ranks_number[rank] for suit in suits for rank in ranks}
         return self.__cards
     
+    @staticmethod
+    def get_card_number(card):
+        gameround= GameRound()
+        gameround.create_cards()
+        return gameround.cards[card]
+    
     def dealing(self,number=1):
         if len(self.cards)==0:
             raise Exception("cards are emtpyed")
@@ -29,10 +37,17 @@ class GameRound:
             return cards[0]
     
     def compare(self,card,nextcard):
-        difference=self.__cards[card] - self.__cards[nextcard]
+        if isinstance(card,list) and isinstance(nextcard,list):
+            first_sum=sum([self.__cards[card] for card in card])
+            next_sum=sum([self.__cards[card] for card in nextcard])
+            return (first_sum-next_sum)<0
+
+        if isinstance(card,str) and isinstance(nextcard,str):
+            difference=self.__cards[card] - self.__cards[nextcard]
         return difference<0
 
     def define_compare_rules(self):
         pass
 
 
+# print(GameRound.get_card_number("ace of hearts"))
