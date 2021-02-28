@@ -5,9 +5,17 @@ class GetContent:
         self.line_count=0
         pass
 
-    def get_content(self,path):
+    def get_content(self,path,func):
         with open(path) as content:
             lines=content.read().split("\n")
-            self.line_count=len(lines)
-            self.word_count=sum([len(line.split()) for line in lines])
-            self.char_count=sum(len(line) for line in lines)
+            for line in lines:
+                func(line)
+    
+    def line_func(self,line):
+        self.line_count+=1
+
+    def word_func(self,line):
+        self.word_count+=len(line.split())
+    
+    def char_func(self,line):
+        self.char_count+=len(line)
