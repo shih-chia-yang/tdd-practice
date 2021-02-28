@@ -1,4 +1,3 @@
-
 #define function 'def' keyword
 # a pair parentheses symbols (), input parameters are defined within these parantheses
 # a colon symbol : to end the function's signature
