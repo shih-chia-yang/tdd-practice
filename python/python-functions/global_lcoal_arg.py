@@ -40,12 +40,4 @@ def func():
     print(a)
     a=1 #變數a有賦值動作，視為區域變數
 
-#將變數參照函式
-#python中若只有寫函式名，代表函式本身，若寫成函式名()，則代表要執行
-def f_to_num(arg):
-    if int(arg):
-        print(arg)
-
-number=f_to_num
-number(2)
 
