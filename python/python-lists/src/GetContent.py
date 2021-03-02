@@ -7,6 +7,7 @@ class GetContent:
         self.char_count=0
         self.line_count=0
         self.file_path=path
+        self.max_line_length=0
         self.result_list={}
         pass
 
@@ -14,6 +15,7 @@ class GetContent:
         self.get_content(self.line_func)
         self.get_content(self.word_func)
         self.get_content(self.char_func)
+        # self.max_line_length=4
 
     def get_content(self,func):
         with open(self.file_path) as content:
@@ -34,7 +36,11 @@ class GetContent:
         self.word_count+=len(line.split())
     
     def char_func(self,line):
-        self.char_count+=len(line)
+        target_line=len(line)
+        if target_line>self.max_line_length:
+            self.max_line_length=target_line
+        self.char_count+=target_line
+
 
 def main():
     

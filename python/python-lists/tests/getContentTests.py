@@ -23,3 +23,7 @@ class GetContentTests(TestCase):
         char_func=self.getContent.char_func
         self.getContent.get_content(char_func)
         self.assertEqual(188,self.getContent.char_count)
+
+    def test_get_max_line_length_from_input(self):
+        self.getContent.count()
+        self.assertEqual(56,self.getContent.max_line_length)
