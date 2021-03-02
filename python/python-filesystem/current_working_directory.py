@@ -19,4 +19,20 @@ print(os.path.splitext(os.path.join('some','directory','path.jpg')))
 #os.path.abspath()，取得絕對路徑
 #os.path.commonprefix([path1,path2])，找出所有路徑共同的前面部份
 
+#目前目錄
+print(os.curdir)
+#上一層目錄
+print(os.pardir)
+#作業系統名稱
+print(os.name)
+
+root_dir=""
+if os.name=='posix':
+    root_dir="/"
+elif os.name=='nt':
+    root_dir="c:\\"
+else:
+    print("無法識別目前作業系統")
+
+print(root_dir)
 
