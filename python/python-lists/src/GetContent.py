@@ -23,7 +23,6 @@ class GetContent:
         line_result=f'this file {self.file_path} has lines count :{self.line_count}'
         word_result=f'this file {self.file_path} has lines count :{self.word_count}'
         char_result=f'this file {self.file_path} has lines count :{self.char_count}'
-        # self.result_list.update({"intput_file":[line_result,word_result,char_result]})
         self.result_list.update({"line_func":line_result})
         self.result_list.update({"word_func":word_result})
         self.result_list.update({"char_func":char_result})
