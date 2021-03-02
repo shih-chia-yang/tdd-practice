@@ -15,7 +15,6 @@ class GetContent:
         self.get_content(self.line_func)
         self.get_content(self.word_func)
         self.get_content(self.char_func)
-        # self.max_line_length=4
 
     def get_content(self,func):
         with open(self.file_path) as content:
