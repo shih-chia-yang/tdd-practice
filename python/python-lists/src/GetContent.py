@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 
 """get content and count word , line ,char"""
+
 class GetContent:
     def __init__(self,path) :
         self.word_count=0

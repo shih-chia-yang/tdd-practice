@@ -9,7 +9,9 @@ print(os.path.join('bin','utils','disktools'))
 #using 
 #basename指路徑最後的目錄或檔案名稱
 #os.path.spilt 會將basename與路徑其餘部份拆開，以tuple回傳
-print(os.path.split(os.path.join('some','directory','path.jpg')))
+CRED='\033[91m'
+print(CRED,os.path.split(os.path.join('some','directory','path.jpg')))
+print('\x1b[6;30;42m' + 'Success!' + '\x1b[0m')
 #os.path.basename()
 print(os.path.basename(os.path.join('some','directory','path.jpg')))
 #os.path.dirname()
