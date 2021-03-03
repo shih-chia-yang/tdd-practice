@@ -7,8 +7,8 @@ class ChallengeTest(TestCase):
         return super().setUp()
     
     def test_all_py_file_size_in_directory(self):
-        size=ch14_challenge.measure_size()
-        self.assertEqual(12322,size)
+        ch14_challenge.measure_size()
+        self.assertEqual(12322,ch14_challenge.TOTAL_SIZE)
 
 def main():
     unittest.main()

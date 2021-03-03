@@ -1,14 +1,14 @@
 from pathlib import  Path
 
-total_size=0
+TOTAL_SIZE=0
 
 def measure_size():
     path=Path("./testdir")
-    global total_size
+    global TOTAL_SIZE
     for file in path.glob("*.py"):
         if file.is_symlink() is False:
-            total_size+=file.stat().st_size 
-    return total_size
+            TOTAL_SIZE+=file.stat().st_size 
+    return TOTAL_SIZE
 
 def main():
     measure_size()
