@@ -1,0 +1,1 @@
+print first line write to file print second line wrtite to file
