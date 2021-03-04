@@ -4,7 +4,6 @@ import sys
 from pathlib import Path
 _file_object=None
 
-
 def msg_sent_file_path(output_path):
     print(f'output will be sent to file :{output_path.absolute()}')
 
@@ -17,15 +16,29 @@ def msg_restore_output():
 def restore_output():
     sys.stdout=sys.__stdout__
 
-def capture_output(file):
+def decorate(func):
+    def wrapper_func(*args):
+        print(f'befor exec {func.__name__}')
+        msg_exec_function()
+        msg_restore_output()
+        for arg in args:
+            print(arg)
+        # func("<html>{0}</html>".format(*args`))
+        print(f'after exec {func.__name__}')
+    return wrapper_func
+
+@decorate
+def msg_custom_output(msg):
+    print(msg)
+
+def capture_output(file,*args):
     """將標準輸出重新導向至檔案"""
     global _file_object
     output_path=Path(file)
-    msg_sent_file_path(output_path)
-    msg_exec_function()
     with open(output_path,'w') as write_file:
         sys.stdout=write_file
-    restore_output()
+        restore_output()
+        msg_custom_output(*args)
 
 def print_file(file):
     source_file=Path(file)
