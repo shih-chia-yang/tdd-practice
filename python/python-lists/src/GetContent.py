@@ -44,7 +44,6 @@ class Getcontent:
             self.max_line_length=target_line
         self.char_count+=target_line
 
-
 def main():
     parser=ArgumentParser()
     parser.add_argument("files",metavar='FILE',nargs='*',help="read data from this file")
