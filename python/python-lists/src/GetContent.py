@@ -14,10 +14,17 @@ class Getcontent:
         pass
 
     def get_content(self):
-        if len(self.file_path)>0:
-            infile=open(self.file_path[0],'r')
-        else:
-            infile=sys.stdin
+        try:
+            if len(self.file_path)>0:
+                infile=open(self.file_path[0],'r')
+            else:
+                infile=sys.stdin
+        except FileNotFoundError:
+            print("file doesn't not exist")
+            return
+        except Exception:
+            print(Exception)
+            return
         for line in infile:
             line=line.replace("\n","")
             self.line_func(line)
@@ -61,7 +68,6 @@ def main():
     if not show :
         for result in getcontent.result_list.values():
             print(result)
-    
 
 if __name__=='__main__':
     main()
