@@ -6,8 +6,8 @@ class Circle(Shape):
     #class variables 類別變數
     # 可用於追蹤某些類別級的資訊，例如建立了多少個物件
     # 類別建立的所有物件都可以存取
-    pi=3.14159
-    all_circles=[]
+    pi=3.14159 #類別變數
+    all_circles=[] #類別變數
     def __init__(self,r=1,_x=0,_y=0):
         super().__init__(_x,_y)
         #object variables
@@ -23,6 +23,7 @@ class Circle(Shape):
         """計算面積"""
         return self.radius**2*self.__class__.pi
     
+    #物件方法
     def perimeter(self):
         """計算周長"""
         return self.radius*2*self.__class__.pi
@@ -41,10 +42,15 @@ class Circle(Shape):
 
     #靜態方法允許即時沒有建立物件也可以呼叫該類別的方法
     #使用@staticmethod修飾器
+    #靜態方法不需要self或cls參數
     @staticmethod
     def total_area():
         """用來計算 all_circles這個lisj所有物件的總面積的靜態方法"""
         return sum([circle.area() for circle in Circle.all_circles])
+    
+    @staticmethod
+    def circle_area(_r):
+        return Circle.pi*_r**2
 
 #tip
 #類別變數、類別方法或靜態方法都是不用經由物件，直接可以存取的變數與方法
