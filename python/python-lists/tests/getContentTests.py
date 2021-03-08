@@ -1,12 +1,12 @@
 import sys
 from unittest import TestCase
 import unittest
-sys.path.append("../src")
+sys.path.append("../src/getcontent")
 from GetContent import Getcontent
 
 class GetContentTests(TestCase):
     def setUp(self):
-        self.getContent=Getcontent(["../src/word_count.txt"])
+        self.getContent=Getcontent(["./word_count.txt"])
         return super().setUp()
 
     def test_get_lines_count_from_file(self):

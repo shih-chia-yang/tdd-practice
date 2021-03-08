@@ -1,0 +1,2 @@
+class EmptyLineError(Exception):
+    pass
