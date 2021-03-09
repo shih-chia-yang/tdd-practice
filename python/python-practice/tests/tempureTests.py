@@ -1,6 +1,6 @@
 import sys,unittest
 sys.path.append("../src/tempure")
-import clean
+import clean,extract
 
 class TempureTests(unittest.TestCase):
 
@@ -22,7 +22,14 @@ class TempureTests(unittest.TestCase):
             for word in value:
                 self.assertTrue(type(word)==type(types[index]))
                 index+=1
+    
+    def test_content_by_csv(self):
+        path="../sample/temp_data_pipes_00a.txt"
+        self.assertTrue(len(extract.getdata(path))>0)
 
+    def test_readcsv(self):
+        path="../../sample/temp_data.csv"
+        self.assertTrue(len(extract.readcsv(path))>0)
 
 if __name__ == '__main__':
     unittest.main()
