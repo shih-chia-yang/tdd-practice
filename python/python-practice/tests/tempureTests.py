@@ -1,6 +1,6 @@
 import sys,unittest
 sys.path.append("../src/tempure")
-import clean,extract
+import clean,extract,export
 
 class TempureTests(unittest.TestCase):
 
@@ -28,8 +28,16 @@ class TempureTests(unittest.TestCase):
         self.assertTrue(len(extract.getdata(path))>0)
 
     def test_readcsv(self):
-        path="../../sample/temp_data.csv"
+        path="../sample/temp_data.csv"
         self.assertTrue(len(extract.readcsv(path))>0)
+
+    def test_export_csv(self):
+        path="../sample/output1.csv"
+        # export.output_csv(['a','b','c','d']{'a':1,'b':2,'c':3,'d':4},path)
+        export.output_csv(['a','b','c','d'],[1,2,3,4],path)
+    
+    def test_export_xlsx(self):
+        export.output_xlsx("../../sample/output1.csv","../sample/output.xlsx")
 
 if __name__ == '__main__':
     unittest.main()

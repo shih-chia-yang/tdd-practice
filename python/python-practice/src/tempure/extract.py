@@ -1,6 +1,5 @@
 import csv
 from pathlib import Path
-from unittest import result
 from openpyxl import load_workbook
 
 def getdata(path):
@@ -13,7 +12,7 @@ def readcsv(path):
     csv_path=Path(path)
     with open(csv_path,newline='',encoding="utf-8") as content:
         results=[fields for fields in csv.reader(content)]
-    print(results) 
+    return results
 
 def readxls(path):
     wb=load_workbook(path)
@@ -30,4 +29,4 @@ def readxls(path):
         row_index+=1
     print(body_tempure_list)
 
-readxls("../../sample/temp_data_01.xlsx")
+# readxls("../../sample/temp_data_01.xlsx")
