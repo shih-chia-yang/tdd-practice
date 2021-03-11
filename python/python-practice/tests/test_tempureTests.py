@@ -33,7 +33,6 @@ class TempureTests(unittest.TestCase):
 
     def test_export_csv(self):
         path="../sample/output1.csv"
-        # export.output_csv(['a','b','c','d']{'a':1,'b':2,'c':3,'d':4},path)
         export.output_csv(['a','b','c','d'],[1,2,3,4],path)
     
     def test_export_xlsx(self):
