@@ -1,5 +1,5 @@
 import sys,unittest
-sys.path.append("../src/tempure")
+sys.path.append("../src/temperature")
 import clean,extract,export
 
 class TempureTests(unittest.TestCase):
