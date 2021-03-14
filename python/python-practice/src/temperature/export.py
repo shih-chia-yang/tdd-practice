@@ -2,12 +2,11 @@ import csv
 from pathlib import Path
 import openpyxl
 
+# 格式設定，請參閱文件 https://openpyxl.readthedocs.io
+
 def output_csv(headers,contents,path):
     output_path=Path(path)
     with open(output_path,'w',newline='',encoding="utf-8") as csvfile:
-        # dict_writer=csv.DictWriter(csvfile,fieldnames=headers)
-        # dict_writer.writeheader()
-        # dict_writer.writerows({'a':1,'b':2,'c':3,'d':4})
         writer=csv.writer(csvfile)
         writer.writerow(headers)
         writer.writerow(contents)
