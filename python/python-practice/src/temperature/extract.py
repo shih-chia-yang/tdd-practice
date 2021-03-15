@@ -3,7 +3,7 @@ from pathlib import Path
 from openpyxl import load_workbook
 from transform import transfer_words
 from clean import clean_line
-import save
+import context
 
 header_list=[]
 content_list={}
@@ -65,13 +65,13 @@ def main():
                          date text,
                          temperature float,
                          count integer)""".format(table_name)
-    save.create_table(table_name,create_sytax)
-    if len(save.select(table_name))==0:
+    context.create_table(table_name,create_sytax)
+    if len(context.select(table_name))==0:
         row_index=1
         for data in  contents.values():
-            save.insert( table_name,row_index,data[0], data[1], data[2],data[3],"id","city","date","temperature","count")
+            context.insert( table_name,row_index,data[0], data[1], data[2],data[3],"id","city","date","temperature","count")
             row_index+=1
-    print(save.select(table_name))
+    print(context.select(table_name))
 
 if __name__=="__main__":
     main()
