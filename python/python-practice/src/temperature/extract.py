@@ -1,6 +1,31 @@
 import csv
 from pathlib import Path
 from openpyxl import load_workbook
+from transform import transfer_words
+from clean import clean_line
+import save
+
+header_list=[]
+content_list={}
+
+def get_line(path):
+    file=Path(path)
+    with open(file,'r') as content:
+        content_list=create_content_list(content.readlines())
+    return content_list
+
+def create_content_list(lines):
+    global content_list,header_list
+    line_index=0
+    for line in lines:
+        words=transfer_words(clean_line(line))
+        if line_index ==0:
+            header_list=words
+        else:
+            content_list.setdefault(line_index)
+            content_list[line_index]=words
+        line_index+=1
+    return content_list
 
 def getdata(path):
     file_path=Path(path)
@@ -30,3 +55,23 @@ def readxls(path):
     print(body_tempure_list)
 
 # readxls("../../sample/temp_data_01.xlsx")
+
+def main():
+    contents=get_line("../../sample/temp_data_pipes_00a.txt")
+    table_name="temperature"
+    create_sytax="""create table {0} (
+                         id integer primary key,
+                         city text,
+                         date text,
+                         temperature float,
+                         count integer)""".format(table_name)
+    save.create_table(table_name,create_sytax)
+    if len(save.select(table_name))==0:
+        row_index=1
+        for data in  contents.values():
+            save.insert( table_name,row_index,data[0], data[1], data[2],data[3],"id","city","date","temperature","count")
+            row_index+=1
+    print(save.select(table_name))
+
+if __name__=="__main__":
+    main()
