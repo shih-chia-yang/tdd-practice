@@ -46,7 +46,6 @@ def readxls(path):
     ws=wb.worksheets[0]
     row_index=0
     for row in ws.iter_rows():
-        # cell.value if cell.value !="Missing" else 0 for cell in row
         results.append([ cell.value for cell in row])
         if row_index>0:
             body_tempure_list.setdefault(row[4].value)

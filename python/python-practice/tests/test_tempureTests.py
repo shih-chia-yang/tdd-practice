@@ -5,18 +5,18 @@ import clean,extract,export
 class TempureTests(unittest.TestCase):
 
     def test_get_line(self):
-        contents=clean.get_line("../sample/temp_data_pipes_00a.txt")
+        contents=extract.get_line("../sample/temp_data_pipes_00a.txt")
         self.assertEqual(10,len(contents)+1)
 
     def test_get_header(self):
         headers=['州','觀察日期','平均溫度(°F)','紀錄數量']
-        clean.get_line("../sample/temp_data_pipes_00a.txt")
-        self.assertEqual(len(headers),len(clean.header_list))
+        extract.get_line("../sample/temp_data_pipes_00a.txt")
+        self.assertEqual(len(headers),len(extract.header_list))
 
     def test_content_type(self):
-        clean.get_line("../sample/temp_data_pipes_00a.txt")
+        extract.get_line("../sample/temp_data_pipes_00a.txt")
         types=["string","string",2.3,1]
-        content=list(clean.content_list.values())
+        content=list(extract.content_list.values())
         for value in content:
             index=0
             for word in value:
