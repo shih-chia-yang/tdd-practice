@@ -18,3 +18,5 @@
 |取得查詢結果|cursor.fetchall(),cursor.fetchmany(n),cursor.fetchone() for row in cursor:|
 |儲存資料庫異動|conn.commit()|
 |關閉連結| conn.close()|
+
+[[orm]]
