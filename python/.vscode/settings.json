@@ -1,0 +1,11 @@
+{
+    "python.analysis.extraPaths": [
+        "python-lists/src",
+        "python-functions",
+        "python-if",
+        "python-module",
+        "python-oop/src",
+        "python-program/*",
+        "python-while/*"
+    ]
+}

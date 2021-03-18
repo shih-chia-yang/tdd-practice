@@ -1,0 +1,3 @@
+jhon smith::37::springfield, massachusetts
+ellen nelle::25::springfield, connecticut
+dale mcgladdery::29::springfield, hawail

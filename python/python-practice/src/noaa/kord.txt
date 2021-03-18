@@ -1,0 +1,11 @@
+CHICAGO O'HARE INTERNATIONAL, IL, United States (KORD) 41-59N 087-55W 200M
+Mar 10, 2021 - 07:51 AM EST / 2021.03.10 1251 UTC
+Wind: from the S (190 degrees) at 18 MPH (16 KT) gusting to 31 MPH (27 KT):0
+Visibility: 10 mile(s):0
+Sky conditions: overcast
+Temperature: 57.0 F (13.9 C)
+Dew Point: 39.9 F (4.4 C)
+Relative Humidity: 52%
+Pressure (altimeter): 29.98 in. Hg (1015 hPa)
+ob: KORD 101251Z 19016G27KT 10SM BKN038 OVC047 14/04 A2998 RMK AO2 PK WND 19027/1251 SLP151 T01390044 
+cycle: 13

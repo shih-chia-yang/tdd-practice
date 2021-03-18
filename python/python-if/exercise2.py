@@ -1,3 +1,9 @@
+
+import sys
+sys.path.append('.././../python')
+import main_module
+
+main_module.create_divider(" print type",1,symbol='*')
 print('type(value)')
 print(type('hello world'))
 print(type(7))
@@ -8,24 +14,32 @@ print(type(False))
 print(type('True'))
 print(type('False'))
 
-print('bool(str)')
+main_module.create_divider("# what's bool to object ",1,symbol='*')
+main_module.create_divider("1. empty string :false",align="<",symbol=' ')
+main_module.create_divider("2 .0;0.0;0+0j:false",align="<",symbol=' ')
+main_module.create_divider("3. empty list [] :false",align="<",symbol=' ')
+main_module.create_divider("4. emtpy tuple () :false",align="<",symbol=' ')
+main_module.create_divider("5. emtpy {} dict :false",align="<",symbol=' ')
+main_module.create_divider("6. special None :false",align="<",symbol=' ')
+
+main_module.create_divider("# bool(str) ",1,symbol='*')
 print(bool('True'))
 print(bool('False'))
 print(bool(''))
 print(bool(' '))
 print(bool('hello world!'))
 
-print('bool(int)')
+main_module.create_divider("# bool(int) ",1,symbol='*')
 print(bool(7))
 print(bool(1))
 print(bool(0))
 print(bool(-1))
 
-print('equqlity')
+main_module.create_divider("# equqlity ",1,symbol='*')
 print(1+1==3)
 print(1+1==2)
 
-print('step 6')
+main_module.create_divider("# greater or less or equal",1,symbol='*')
 print(3==4)
 print(3!=4)
 print(3>4)

@@ -8,7 +8,7 @@ create_divider('increment and assign operator')
 count = 0
 while count != 5:
     count += 1
-    print(count)
+    print(count) 
 
 create_divider('increment count by 3')
 count = 0

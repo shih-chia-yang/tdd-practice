@@ -1,3 +1,9 @@
+import sys
+sys.path.append('../../python')
+from main_module import create_divider
+
+create_divider("how much calorie eats today? print summary",1)
+
 print("Today's date?")
 current_date=input()
 

@@ -1,0 +1,2 @@
+zero puls any integer is an integer.
+example: zero+one=one
