@@ -16,3 +16,5 @@ Part 2 Event-Driven Architecture
 - Command-query responsibility segregation (Chapter 12)
 
 - Dependency injection(Chapter 13)
+
+- exploring the domain language [[some-notes-on-allocation]]
