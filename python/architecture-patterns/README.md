@@ -2,6 +2,7 @@
 
 [github](https://github.com/cosmicpython/code/branches/all)
 
+[[domain-driven-design]]
 Part 1 Building an Architecture to Support Domain Modeling
 - Domain modeling and DDD(chapters 1 and 7)
 
