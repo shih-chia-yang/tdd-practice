@@ -27,6 +27,13 @@ class Batch():
         if line in self._allocations:
             self._allocations.remove(line)
         
-    def can_allocate(self,line:OrderLine)->bool:
+    def can_allocate(self,line:OrderLine) -> bool:
         return self.sku==line.sku and self.available_quantity>=line.qty
-        
+    
+    def __eq__(self, other: object) -> bool:
+        if not  isinstance(other,Batch):
+            return False
+        return self.reference==other.reference
+
+    def __hash__(self) -> int:
+        return hash(self.reference)
