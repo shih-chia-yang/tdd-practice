@@ -12,15 +12,15 @@ where each line has a SKU and a quantity.
 
 1.  the available quantity is reduced by x 
 
-- we have a batch of 20 small-table, and we allocate an order line for 2 small-table.
+- [x] we have a batch of 20 small-table, and we allocate an order line for 2 small-table.
 
-- the batch should have 18 small-table remaining
+- [x] the batch should have 18 small-table remaining
 
 2.  can't allocate to a batch if the available quantity is less than the quantity of the order line
 
-- we have a batch of 1 blue-cushion, and an order line for 2 blue-cushion
+- [x]  we have a batch of 1 blue-cushion, and an order line for 2 blue-cushion
 
-- we should not be able to allocate the line to the batch
+- [x] we should not be able to allocate the line to the batch
 
 3. can't allocate the same line twice
 

@@ -32,9 +32,30 @@ def test_can_allocate_if_available_greater_than_required():
 def test_can_not_allocate_if_skus_do_not_match():
     batch,line =fake_batch_and_line("table",10,5,"chair")
     assert batch.can_allocate(line) is False
+    
+def test_can_not_allocate_order_again_to_the_batch():
+    batch ,order1 = fake_batch_and_line("small-table",20,2)
+    order1_copy=OrderLine(order1.orderid,order1.sku,order1.qty)
+    batch.allocate(order1)
+    batch.allocate(order1_copy)
+    assert len(batch._allocations)==1
 
-# def main():
-#     test_allocating_to_a_batch_reduces_the_available_quantity()
+def test_total_purchased_quantity_form_different_order_line():
+    batch ,order1 = fake_batch_and_line("small-table",20,2)
+    order2=OrderLine("order-002",order1.sku,order1.qty)
+    batch.allocate(order1)
+    batch.allocate(order2)
+    assert batch.available_quantity==20-(order1.qty+order2.qty)
 
-# if __name__=="__main__":
-#     main()
+def test_can_only_deallocate_allocated_lines():
+    batch ,order1 = fake_batch_and_line("small-table",20,2)
+    batch.allocate(order1)
+    batch.deallocate(order1)
+    assert batch.available_quantity==20
+    
+    
+def main():
+    test_allocating_to_a_batch_reduces_the_available_quantity()
+
+if __name__=="__main__":
+    main()
