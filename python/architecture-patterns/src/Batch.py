@@ -37,3 +37,8 @@ class Batch():
 
     def __hash__(self) -> int:
         return hash(self.reference)
+    
+    def __gt__(self, other):
+        if self.eta is None or other.eta is None:
+            return False
+        return self.eta>other.eta

@@ -24,7 +24,13 @@ where each line has a SKU and a quantity.
 
 3. can't allocate the same line twice
 
-- we have a batch of 10 blue-vase, and we allocate an order line for 2 blue-vase
+- [x] we have a batch of 10 blue-vase, and we allocate an order line for 2 blue-vase
 
-- if we allocate the order line again to the same batch, the batch should still have an available quantity of 8
+- [x] if we allocate the order line again to the same batch, the batch should still have an available quantity of 8
 
+4. need to do is allocate order lines against a specific set of batches that represent all stock
+
+- [x] 針對現有可使用的stock進行分配
+    - [x] 以時間做為排序
+
+- [] 當缺貨時，無法進行分配時，throw exception
