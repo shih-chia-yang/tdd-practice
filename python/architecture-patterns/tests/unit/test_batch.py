@@ -1,7 +1,6 @@
-import pytest
 import datetime
-from Batch import Batch
-from OrderLine import OrderLine
+from allocation.domain.Batch import Batch
+from allocation.domain.OrderLine import OrderLine
 
 def fake_can_allocate_batch_list():
         return [(fake_batch_and_line("desk", 20, 2),True),

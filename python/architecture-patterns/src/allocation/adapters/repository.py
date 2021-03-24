@@ -1,5 +1,5 @@
 import abc
-from Batch import Batch
+from allocation.domain.Batch import Batch
 
 # port pattern
 class AbstractRepository(abc.ABC):

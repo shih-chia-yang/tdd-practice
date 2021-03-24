@@ -1,8 +1,8 @@
 
 from typing import List
-from Batch import Batch
-from OrderLine import OrderLine
-from OutOfStock import OutOfStock
+from allocation.domain.Batch import Batch
+from allocation.domain.OrderLine import OrderLine
+from allocation.domain.OutOfStock import OutOfStock
 
 def allocate(line: OrderLine,batches: List[Batch]) -> str:
     #sorted_batch=sorted(batches,key= lambda batch:batch.eta)

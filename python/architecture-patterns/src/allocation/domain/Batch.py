@@ -1,6 +1,6 @@
 from datetime import date
 from typing import Optional
-from OrderLine import OrderLine
+from allocation.domain.OrderLine import OrderLine
 
 class Batch():
 

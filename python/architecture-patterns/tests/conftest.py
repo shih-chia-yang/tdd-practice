@@ -1,8 +1,8 @@
 import pytest
 import references
-from model import metadata,start_mapper
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker,clear_mappers
+from allocation.adapters.model import metadata,start_mapper
 
 @pytest.fixture
 def in_memory_db():

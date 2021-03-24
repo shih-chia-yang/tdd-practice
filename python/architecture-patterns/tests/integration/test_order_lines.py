@@ -1,4 +1,4 @@
-from OrderLine import OrderLine
+from allocation.domain.OrderLine import OrderLine
 
 def test_order_lines_mapper_can_load_lines(session):
     session.execute("insert into order_lines (orderid,sku,qty) values"

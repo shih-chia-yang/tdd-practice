@@ -1,2 +1,5 @@
+from pprint import pprint
+from pathlib import Path
 import sys
-sys.path.append("../src")
+src_path=str(Path("src").absolute())
+sys.path.append(src_path)

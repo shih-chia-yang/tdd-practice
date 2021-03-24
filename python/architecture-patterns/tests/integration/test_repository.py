@@ -1,6 +1,6 @@
-from Batch import Batch
-from OrderLine import OrderLine
-from repository import BatchRepository
+from allocation.domain.Batch import Batch
+from allocation.domain.OrderLine import OrderLine
+from allocation.adapters.repository import BatchRepository
 
     
 def test_repository_can_save_batch(session):
