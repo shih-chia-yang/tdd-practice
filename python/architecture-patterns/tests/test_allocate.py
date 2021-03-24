@@ -1,6 +1,6 @@
 import datetime
-import pytest,sys
-sys.path.append("../src")
+import pytest
+import references
 from Batch import Batch
 from OrderLine import OrderLine
 from allocate import allocate

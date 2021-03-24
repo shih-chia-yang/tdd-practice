@@ -6,7 +6,10 @@
         "python-module",
         "python-oop/src",
         "python-program/*",
-        "python-while/*"
+        "python-while/*",
+        "architecture-patterns",
+        "architecture-patterns/src",
+        "architecture-patterns/tests"
     ],
     "python.pythonPath": "/usr/bin/python3",
     "python.linting.pylintEnabled": true,

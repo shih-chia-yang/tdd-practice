@@ -1,17 +1,12 @@
 from dataclasses import dataclass
-from locale import currency
 from typing import NamedTuple
 from collections import namedtuple
-from matplotlib.pyplot import bar
-import py
-
 import pytest
 
 @dataclass
 class Name:
     first_name:str
     surname:str
-
 
 class Money(NamedTuple):
     currency:str

@@ -1,7 +1,5 @@
 import pytest
 import datetime
-import sys
-sys.path.append("../src")
 from Batch import Batch
 from OrderLine import OrderLine
 
