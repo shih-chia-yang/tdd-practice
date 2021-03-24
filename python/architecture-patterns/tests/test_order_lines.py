@@ -1,21 +1,4 @@
-import pytest
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker,clear_mappers
 from OrderLine import OrderLine
-from model import metadata,start_mapper
-
-
-@pytest.fixture
-def in_memory_db():
-    engine=create_engine("sqlite:///:memory:")
-    metadata.create_all(engine)
-    return engine
-
-@pytest.fixture
-def session(in_memory_db):
-    start_mapper()
-    yield sessionmaker(bind=in_memory_db)()
-    clear_mappers()
 
 def test_order_lines_mapper_can_load_lines(session):
     session.execute("insert into order_lines (orderid,sku,qty) values"
