@@ -4,7 +4,7 @@
 
 2. if file exists in the source , but it has a different name than in the destination, rename the destination file to match
 
-3. if a file exist in the destination but not in the source ,remove it 
+3. if a file exist in the destination but not in the source ,remove it
 
 
 - walk the source folder and build a dict of filenames and their hashes
