@@ -1,9 +1,10 @@
 from datetime import datetime
 import shutil
+from numpy import equal
 import pytest
 import sys
 sys.path.append("../../src")
-from dirsync.sync import sync
+from dirsync.sync import determine_actions, sync
 from pathlib import Path
    
 def test_dest_path_has_file_not_in_source_path_should_be_deleted(initsync):
@@ -43,3 +44,15 @@ def test_when_a_file_has_been_renamed_in_the_source(initsync):
     finally:
         shutil.rmtree(source_path)
         shutil.rmtree(dest_path)
+        
+def test_when_a_file_exists_in_the_source_but_not_the_destination():
+    src_hashes={'hash1':'fn1'}
+    dst_hashes={}
+    actions=determine_actions(src_hashes,dst_hashes,Path('/src'),Path('/dst'))
+    assert list(actions) ==[('copy',Path('/src/fn1'),Path('/dst/fn1'))]
+
+def test_determine_actions_when_a_file_has_been_renamed_in_the_source():
+    src_hashes={'hash1':'fn1'}
+    dst_hashes={'hash1':'fn2'}
+    actions=determine_actions(src_hashes,dst_hashes,Path('/src'),Path('/dst'))
+    assert list(actions) == [('move',Path('/dst/fn2'),Path('/dst/fn1'))]
