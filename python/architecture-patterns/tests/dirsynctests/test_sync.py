@@ -4,13 +4,14 @@ from numpy import equal
 import pytest
 import sys
 sys.path.append("../../src")
-from dirsync.sync import determine_actions, sync
+from dirsync.sync import FileSystem,read_paths_and_hashes,determine_actions, sync
+import fake_filesystem
 from pathlib import Path
    
 def test_dest_path_has_file_not_in_source_path_should_be_deleted(initsync):
     try:
         source_path,dest_path,deleted_file=initsync
-        sync(source_path,dest_path)
+        sync(read_paths_and_hashes,FileSystem(),source_path,dest_path)
         # assert len(dest)==0
         assert deleted_file.is_file()==False
     finally:
@@ -21,7 +22,7 @@ def test_when_a_file_exists_in_the_source_but_not_in_the_destination(initsync):
     try:
         source_path,dest_path,deleted_file=initsync
         filename="source1.txt"
-        sync(source_path,dest_path)
+        sync(read_paths_and_hashes,FileSystem(),source_path,dest_path)
         source_file_path=source_path.joinpath(filename)
         expected_path=dest_path.joinpath(filename)
         assert expected_path.is_file()
@@ -38,7 +39,7 @@ def test_when_a_file_has_been_renamed_in_the_source(initsync):
         with old_dest_file.open('w') as old_file:
             old_file.write(content)
         excepted_dest_path=dest_path.joinpath("source2.txt")
-        sync(source_path,dest_path)
+        sync(read_paths_and_hashes,FileSystem(),source_path,dest_path)
         assert old_dest_file.is_file()==False
         assert excepted_dest_path.read_text()==content
     finally:
@@ -48,6 +49,11 @@ def test_when_a_file_has_been_renamed_in_the_source(initsync):
 def test_when_a_file_exists_in_the_source_but_not_the_destination():
     src_hashes={'hash1':'fn1'}
     dst_hashes={}
+    # filesystem =fake_filesystem.FakeFileSystem()
+    # reader={"/source":source,"/dest":dest}
+    # sync(read_paths_and_hashes,filesystem,source,dest)
+    # print(filesystem)
+    # assert filesystem==[("copy","/source/my-file","/dest/my-file")]
     actions=determine_actions(src_hashes,dst_hashes,Path('/src'),Path('/dst'))
     assert list(actions) ==[('copy',Path('/src/fn1'),Path('/dst/fn1'))]
 

@@ -3,7 +3,7 @@ import os
 import shutil
 from pathlib import Path
 from dirsync.hashing import hash_file
-
+from dirsync.filesystem import FileSystem
 
 def read_paths_and_hashes(root):
     hashes={}
@@ -29,9 +29,9 @@ def determine_actions(src_hashes,dest_hashes,src_folder,dest_folder):
         if sha not in src_hashes:
             yield 'delete',Path(dest_folder).joinpath(filename)
 
-def sync(source,dest):
-    source_hashes=read_paths_and_hashes(source)
-    dest_hashes=read_paths_and_hashes(dest)
+def sync(reader,filesystem,source,dest):
+    source_hashes=reader(source)
+    dest_hashes=reader(dest)
     #keep track of the files filenames and hashes
     
     actions=determine_actions(source_hashes,dest_hashes,source,dest)
@@ -39,11 +39,12 @@ def sync(source,dest):
     
     for action,*paths in actions:
         if action=='copy':
-            shutil.copyfile(*paths)
+            filesystem.copy(*paths)
         if action=='move':
-            shutil.move(*paths)
+            print(*paths)
+            filesystem.move(*paths)
         if action == 'delete':
-            os.remove(paths[0])
+            filesystem.delete(paths[0])
     # for folder,_,files in os.walk(dest):
     #     for dest_file in files:
     #         dest_path=Path(folder).joinpath(dest_file)
