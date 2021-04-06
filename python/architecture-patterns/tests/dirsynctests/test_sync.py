@@ -12,7 +12,6 @@ def test_dest_path_has_file_not_in_source_path_should_be_deleted(initsync):
     try:
         source_path,dest_path,deleted_file=initsync
         sync(read_paths_and_hashes,FileSystem(),source_path,dest_path)
-        # assert len(dest)==0
         assert deleted_file.is_file()==False
     finally:
         shutil.rmtree(source_path)
@@ -47,18 +46,17 @@ def test_when_a_file_has_been_renamed_in_the_source(initsync):
         shutil.rmtree(dest_path)
         
 def test_when_a_file_exists_in_the_source_but_not_the_destination():
-    src_hashes={'hash1':'fn1'}
-    dst_hashes={}
-    # filesystem =fake_filesystem.FakeFileSystem()
-    # reader={"/source":source,"/dest":dest}
-    # sync(read_paths_and_hashes,filesystem,source,dest)
-    # print(filesystem)
-    # assert filesystem==[("copy","/source/my-file","/dest/my-file")]
-    actions=determine_actions(src_hashes,dst_hashes,Path('/src'),Path('/dst'))
-    assert list(actions) ==[('copy',Path('/src/fn1'),Path('/dst/fn1'))]
+    source={"sha1":"my-file"}
+    dest={}
+    filesystem =fake_filesystem.FakeFileSystem()
+    reader={"/source":source,"/dest":dest}
+    sync(reader.pop,filesystem,"/source","/dest")
+    assert filesystem == [("copy",Path("/source/my-file"),Path("/dest/my-file"))]
 
 def test_determine_actions_when_a_file_has_been_renamed_in_the_source():
-    src_hashes={'hash1':'fn1'}
-    dst_hashes={'hash1':'fn2'}
-    actions=determine_actions(src_hashes,dst_hashes,Path('/src'),Path('/dst'))
-    assert list(actions) == [('move',Path('/dst/fn2'),Path('/dst/fn1'))]
+    source={"sha1":"renamed-file"}
+    dest={"sha1":"original-file"}
+    filesystem=fake_filesystem.FakeFileSystem()
+    reader={"/source":source,"/dest":dest}
+    sync(reader.pop,filesystem,"/source","/dest")
+    assert filesystem == [("move",Path("/dest/original-file"),Path("/dest/renamed-file"))]
