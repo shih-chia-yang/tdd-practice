@@ -18,6 +18,7 @@ namespace money
     {
 
         public Hashtable RatesList => rates;
+        
         private Hashtable rates { get; set; }
 
         public IEnumerable<ICurrencyExpression> ExpressionsList => sumList.AsReadOnly();
